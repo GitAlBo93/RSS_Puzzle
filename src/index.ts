@@ -1,5 +1,5 @@
-import './global.css';
+//import './global.css';
 import App from './app/app';
 
 const app = new App();
-//app.start();
+app.start();

@@ -7,10 +7,10 @@ class App {
 start(){
 
     function createInputFLName(id: string, Placeholder: string): HTMLInputElement { 
-        console.log("create");
+        // console.log("create");
 
         const inputFirstName = document.createElement('input');
-        inputFirstName.type = "text";
+//        inputFirstName.type = "text";
         inputFirstName.id = id;
         inputFirstName.placeholder = Placeholder;
 //        console.log(id + Placeholder);
@@ -26,18 +26,31 @@ start(){
     }
     
     const Container = document.createElement('div');
+    Container.className = "conteiner";
     document.body.appendChild(Container);
 
+    const ContainerFName = document.createElement('div');
+    ContainerFName.className = "conteinerFName";
+    Container.appendChild(ContainerFName);
+
+    const ContainerLName = document.createElement('div');
+    ContainerLName.className = "conteinerLName";
+    Container.appendChild(ContainerLName);
+
     const inputFirstName = createInputFLName('idFirstName', 'Укажите своё имя');
-    const inputLastName = createInputFLName('idLastName', 'Укажите свою фамилию');
     const labelFirstName = createLableFLName ('Имя: ');
+    ContainerFName.appendChild(labelFirstName);
+    ContainerFName.appendChild(inputFirstName);
+
+    const inputLastName = createInputFLName('idLastName', 'Укажите свою фамилию');
     const labelLastName = createLableFLName ('Фамилия: ');
-
-    Container.appendChild(labelFirstName);
-    Container.appendChild(inputFirstName);
-    Container.appendChild(labelLastName);
-    Container.appendChild(inputLastName);
-
+    ContainerLName.appendChild(labelLastName);
+    ContainerLName.appendChild(inputLastName);
+ 
+    const BtnStartGame = document.createElement ('button');
+    BtnStartGame.className = "btnStartGame";
+    BtnStartGame.textContent = "Играть";
+    Container.appendChild(BtnStartGame);
 //    console.log(inputField1);
 //    console.log(Container);
     

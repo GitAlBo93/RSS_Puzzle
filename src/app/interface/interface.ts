@@ -1,7 +1,7 @@
 interface ICreatElement {
-    id: string,
-    Placeholder: string,
-//    Text: string
+    id: string;
+    Placeholder: string;
+    //    Text: string
 }
 
-export {ICreatElement};
+export { ICreatElement };

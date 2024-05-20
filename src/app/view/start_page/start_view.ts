@@ -1,9 +1,15 @@
-export default class startPage {
+//import App from "../../app";
+//import {ICreatElement}  from '../../interface/interface';
+
+export default class startPage{
     constructor (){
-        
+       this.startPg();
+     // Вызов функции для инициализации элементов на странице и добавление корневого элемента в body
+    //const sectionElement = this.startPg();
+    //document.body.appendChild(sectionElement);
     }
 
-    start(){
+    startPg(): HTMLElement {
 
         function createInputFLName(id: string, Placeholder: string): HTMLInputElement { 
             // console.log("create");
@@ -27,7 +33,7 @@ export default class startPage {
         
         const Section = document.createElement ('section');
         Section.className = "Section";
-        document.body.appendChild(Section);
+//        document.body.appendChild(Section);
         
         const Container = document.createElement('form');
         Container.className = "container";
@@ -46,7 +52,7 @@ export default class startPage {
         ContainerFName.appendChild(labelFirstName);
         ContainerFName.appendChild(inputFirstName);
     
-        const inputLastName = createInputFLName('idLastName', 'Укажите свою фамилию');
+        const inputLastName: HTMLInputElement = createInputFLName('idLastName', 'Укажите свою фамилию');
         const labelLastName = createLableFLName ('Фамилия: ');
         ContainerLName.appendChild(labelLastName);
         ContainerLName.appendChild(inputLastName);
@@ -57,6 +63,16 @@ export default class startPage {
         Container.appendChild(BtnStartGame);
     //    console.log(inputField1);
     //    console.log(Container);
-        
+        // Пример добавления обработчика событий на кнопку
+        BtnStartGame.addEventListener('click', (event: MouseEvent) => {
+            event.preventDefault();
+            console.log('Имя:', inputFirstName.value);
+            console.log('Фамилия:', inputLastName.value);
+        });
+    
+        return Section;
+
     }
+
+   
 }

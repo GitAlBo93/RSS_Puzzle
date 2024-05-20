@@ -25,16 +25,20 @@ start(){
         return lableFLName
     }
     
-    const Container = document.createElement('div');
-    Container.className = "conteiner";
+    const Section = document.createElement ('section');
+    Section.className = "Section";
+    document.body.appendChild(Section);
+    
+    const Container = document.createElement('form');
+    Container.className = "container";
     document.body.appendChild(Container);
 
     const ContainerFName = document.createElement('div');
-    ContainerFName.className = "conteinerFName";
+    ContainerFName.className = "containerFName";
     Container.appendChild(ContainerFName);
 
     const ContainerLName = document.createElement('div');
-    ContainerLName.className = "conteinerLName";
+    ContainerLName.className = "containerLName";
     Container.appendChild(ContainerLName);
 
     const inputFirstName = createInputFLName('idFirstName', 'Укажите своё имя');

@@ -1,7 +1,7 @@
 //import App from "../../app";
 //import {ICreatElement}  from '../../interface/interface';
 
-export default class startPage {
+export default class StartPage {
     constructor() {
         this.startPg();
         // Вызов функции для инициализации элементов на странице и добавление корневого элемента в body

@@ -20,7 +20,9 @@
         "no-debugger": "off",
         "no-console": 0,
         "class-methods-use-this": "off",
-        "@typescript-eslint/no-explicit-any": "error"
+        "@typescript-eslint/no-explicit-any": "error",
+        "indent": "off",
+        "@typescript-eslint/indent": "off"
     },
     "parser": "@typescript-eslint/parser",
     "root": true

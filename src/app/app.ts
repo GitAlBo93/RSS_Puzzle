@@ -1,4 +1,4 @@
-import startPage from './view/start_page/start_view';
+import StartPage from './view/start_page/start_view';
 
 class App {
     constructor() {
@@ -7,8 +7,8 @@ class App {
     }
 
     start() {
-        const StartPage = new startPage();
-        document.body.append(StartPage.startPg());
+        const PageStart = new StartPage();
+        document.body.append(PageStart.startPg());
     }
 }
 

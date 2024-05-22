@@ -1,73 +1,40 @@
-//import App from "../../app";
-//import {ICreatElement}  from '../../interface/interface';
-
 export default class StartPage {
-    constructor() {
+    constructor(){
         this.startPg();
-        // Вызов функции для инициализации элементов на странице и добавление корневого элемента в body
-        //const sectionElement = this.startPg();
-        //document.body.appendChild(sectionElement);
     }
 
-    startPg(): HTMLElement {
-        function createInputFLName(id: string, Placeholder: string): HTMLInputElement {
-            // console.log("create");
-
-            const inputFirstName = document.createElement('input');
-            //        inputFirstName.type = "text";
-            inputFirstName.id = id;
-            inputFirstName.placeholder = Placeholder;
-            //        console.log(id + Placeholder);
-            //        inputField.style.margin = '5px';
-
-            return inputFirstName;
-        }
-
-        function createLableFLName(Text: string): HTMLLabelElement {
-            const lableFLName = document.createElement('label');
-            //        lableFLName.title = "Lable";
-            lableFLName.textContent = Text;
-            return lableFLName;
-        }
-
+    startPg(){
         const Section = document.createElement('section');
         Section.className = 'Section';
-        //        document.body.appendChild(Section);
 
         const Container = document.createElement('form');
         Container.className = 'container';
         Section.appendChild(Container);
 
-        const ContainerFName = document.createElement('div');
-        ContainerFName.className = 'containerFName';
-        Container.appendChild(ContainerFName);
+        const NameGame = document.createElement('h2');
+        NameGame.className = 'name_Game';
+        NameGame.textContent = 'RSS_Puzzle';
+        Container.appendChild(NameGame);
 
-        const ContainerLName = document.createElement('div');
-        ContainerLName.className = 'containerLName';
-        Container.appendChild(ContainerLName);
+        const Welcom = document.createElement('p');
+        Welcom.className = 'welcom';
+        Welcom.textContent = 'Welcom in Puzzle';
+        Container.appendChild(Welcom);
 
-        const inputFirstName = createInputFLName('idFirstName', 'Укажите своё имя');
-        const labelFirstName = createLableFLName('Имя: ');
-        ContainerFName.appendChild(labelFirstName);
-        ContainerFName.appendChild(inputFirstName);
+        const TextGame = document.createElement('p');
+        TextGame.className = 'text_Game';
+        TextGame.textContent = 'Text_Text_text_TextText_Text_text_TextText_Text_text_TextText_Text_text_TextText_Text_text_Text';
+        Container.appendChild(TextGame);
 
-        const inputLastName: HTMLInputElement = createInputFLName('idLastName', 'Укажите свою фамилию');
-        const labelLastName = createLableFLName('Фамилия: ');
-        ContainerLName.appendChild(labelLastName);
-        ContainerLName.appendChild(inputLastName);
+        const BtnWelcom = document.createElement('button');
+        BtnWelcom.className = 'welcom_btn';
+        BtnWelcom.textContent = 'Game Start';
+        Container.appendChild(BtnWelcom);
 
-        const BtnStartGame = document.createElement('button');
-        BtnStartGame.className = 'btnStartGame';
-        BtnStartGame.textContent = 'Играть';
-        Container.appendChild(BtnStartGame);
-        //    console.log(inputField1);
-        //    console.log(Container);
-        // Пример добавления обработчика событий на кнопку
-        BtnStartGame.addEventListener('click', (event: MouseEvent) => {
-            event.preventDefault();
-            console.log('Имя:', inputFirstName.value);
-            console.log('Фамилия:', inputLastName.value);
-        });
+        const BtnLogOff = document.createElement('button');
+        BtnLogOff.className = 'logOff_btn';
+        BtnLogOff.textContent = 'Выход';
+        Container.appendChild(BtnLogOff);
 
         return Section;
     }

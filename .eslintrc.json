@@ -22,7 +22,8 @@
         "class-methods-use-this": "off",
         "@typescript-eslint/no-explicit-any": "error",
         "indent": "off",
-        "@typescript-eslint/indent": "off"
+        "@typescript-eslint/indent": "off",
+        "space-before-blocks": "off"
     },
     "parser": "@typescript-eslint/parser",
     "root": true

@@ -3,7 +3,7 @@ export default class StartPage {
         this.startPg();
     }
 
-    startPg(){
+    startPg(): HTMLElement{
         const Section = document.createElement('section');
         Section.className = 'Section';
 

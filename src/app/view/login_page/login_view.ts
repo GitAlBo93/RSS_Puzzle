@@ -20,6 +20,9 @@ export default class LoginPage {
             //        console.log(id + Placeholder);
             //        inputField.style.margin = '5px';
 
+            //Поле обязательно для заполнение
+            inputFirstName.required = true;
+
             return inputFirstName;
         }
 

@@ -1,5 +1,5 @@
-//import LoginPage from './view/login_page/login_view';
-import StartPage from './view/start_page/start_view';
+import LoginPage from './view/login_page/login_view';
+//import StartPage from './view/start_page/start_view';
 
 class App {
     constructor() {
@@ -8,11 +8,11 @@ class App {
     }
 
     start() {
-        // const PageLogin = new LoginPage();
-        // document.body.append(PageLogin.loginPg());
+        const PageLogin = new LoginPage();
+        document.body.append(PageLogin.loginPg());
 
-        const PageStart = new StartPage();
-        document.body.append(PageStart.startPg());
+        // const PageStart = new StartPage();
+        // document.body.append(PageStart.startPg());
     }
 }
 

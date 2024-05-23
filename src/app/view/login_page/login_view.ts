@@ -1,5 +1,6 @@
 //import App from "../../app";
 //import {ICreatElement}  from '../../interface/interface';
+import './login.css';
 
 export default class LoginPage {
     constructor() {
@@ -30,6 +31,7 @@ export default class LoginPage {
             const lableFLName = document.createElement('label');
             //        lableFLName.title = "Lable";
             lableFLName.textContent = Text;
+            lableFLName.className = 'lableFLName';
             return lableFLName;
         }
 
@@ -40,6 +42,11 @@ export default class LoginPage {
         const Container = document.createElement('form');
         Container.className = 'container';
         Section.appendChild(Container);
+
+        const ContainerGameName = document.createElement('h1');
+        ContainerGameName.className = 'containerGName';
+        ContainerGameName.innerText = 'RSS-Puzzle';
+        Container.appendChild(ContainerGameName);
 
         const ContainerFName = document.createElement('div');
         ContainerFName.className = 'containerFName';
@@ -59,9 +66,9 @@ export default class LoginPage {
         ContainerLName.appendChild(labelLastName);
         ContainerLName.appendChild(inputLastName);
 
-        const BtnStartGame = document.createElement('button');
+        const BtnStartGame: HTMLButtonElement = document.createElement('button');
         BtnStartGame.className = 'btnStartGame';
-        BtnStartGame.textContent = 'Играть';
+        BtnStartGame.textContent = 'Game';
         Container.appendChild(BtnStartGame);
         //    console.log(inputField1);
         //    console.log(Container);

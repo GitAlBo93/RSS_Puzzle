@@ -1,0 +1,66 @@
+.Section  {
+    margin: 20%;
+    /* margin-left: 40%;
+    margin-top: 30%; */
+    /* width: 500px;
+    height: 260px; */
+    /* border: black 2px solid; */
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 60px;
+    backdrop-filter: blur(8px);
+    min-width: 40vw;
+    min-height: 40vh;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+    gap: 20px;
+}
+
+.text_Game{
+    font-family: "Poetsen One", sans-serif;
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: 400;
+}
+
+.welcom_btn,
+.logOff_btn{
+    font-family: "Poetsen One", sans-serif;
+	display: inline-block;	
+	box-sizing: border-box;
+	padding: 0 20px;
+	/* margin: 0 15px 15px 0; */
+	outline: none;
+	border: none;  
+	border-radius: 6px;
+    height: 60px;
+    width: 310px;
+	line-height: 40px;
+	font-size: 31px;
+	font-weight: 400;
+	text-decoration: none;
+	color: #385898;
+	background-color: #e7f3ff;
+	cursor: pointer;
+	user-select: none;
+	appearance: none;
+	touch-action: manipulation;
+    margin-top: 30px;
+}
+
+.welcom_btn:hover {
+	background-color: #DBE7F2;
+}
+
+.logOff_btn{
+    height: 30px;
+    width: 100px;
+    margin-top: 0px;
+    font-size: 13px;
+}

@@ -1,3 +1,5 @@
+import './start.css';
+
 export default class StartPage {
     constructor(){
         this.startPg();
@@ -23,7 +25,7 @@ export default class StartPage {
 
         const TextGame = document.createElement('p');
         TextGame.className = 'text_Game';
-        TextGame.textContent = 'Text_Text_text_TextText_Text_text_TextText_Text_text_TextText_Text_text_TextText_Text_text_Text';
+        TextGame.textContent = 'Погрузитесь в непревзойденное испытание английского языка! Составляйте предложения из перепутанных слов в этой интерактивной игре. Благодаря различным уровням сложности и полезным подсказкам, это идеальный способ улучшить свои навыки английского языка, весело проводя время!';
         Container.appendChild(TextGame);
 
         const BtnWelcom = document.createElement('button');

@@ -3,7 +3,7 @@
 // import Page1 from './view/test/test_page1/testp1';
 // import Page2 from './view/test/test_page2/testp2';
 
-import HrefTest from "./view/test/href";
+import HrefTest from './view/test/href';
 
 class App {
     private static container: HTMLElement = document.body;

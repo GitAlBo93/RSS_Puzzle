@@ -1,6 +1,6 @@
-import constructorView from "../constructor";
+import constructorView from '../constructor';
 
-export default class Page2 extends constructorView{
+export default class Page2 extends constructorView {
     private conteiner: HTMLElement;
     static TEST2 = {
         ELEM: 'h1',
@@ -8,7 +8,7 @@ export default class Page2 extends constructorView{
         TEXT: 'TextTestttP2',
     };
 
-    constructor(id: string){
+    constructor(id: string) {
         super();
         this.conteiner = document.createElement('div');
         this.conteiner.id = id;
@@ -20,14 +20,14 @@ export default class Page2 extends constructorView{
     //     TP2.innerText = text;
     //     return TP2;
     // }
-// Публичный метод. innertext вызывает testPage2 и передает в него text и добавляется в conteiner
+    // Публичный метод. innertext вызывает testPage2 и передает в него text и добавляется в conteiner
     // renderP2(){
     //     const innertext = this.testPage2(Page2.TEST2.TEXT);
     //     this.conteiner.append(innertext);
     //     return this.conteiner;
     // }
 
-    renderP2(){
+    renderP2() {
         const innertext = this.constructorRender(Page2.TEST2.ELEM, Page2.TEST2.CLASSES, Page2.TEST2.TEXT);
         this.conteiner.append(innertext);
         return this.conteiner;

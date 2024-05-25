@@ -4,14 +4,14 @@
 import './start.css';
 
 // export default class StartPage extends ConstructorView{
-    export default class StartPage{
+export default class StartPage {
     // eslint-disable-next-line @typescript-eslint/space-before-blocks
-    constructor(){
+    constructor() {
         // super();
         this.startPg();
     }
 
-    startPg(): HTMLElement{
+    startPg(): HTMLElement {
         const Section = document.createElement('section');
         Section.className = 'Section';
 
@@ -29,9 +29,6 @@ import './start.css';
         // const TEXT = 'RSS_Puzzle';
         // this.constViewP(TYPE, CLASESS, TEXT);
 
-
-
-
         const Welcom = document.createElement('p');
         Welcom.className = 'welcom';
         Welcom.textContent = 'Welcom in Puzzle';
@@ -39,7 +36,8 @@ import './start.css';
 
         const TextGame = document.createElement('p');
         TextGame.className = 'text_Game';
-        TextGame.textContent = 'Погрузитесь в непревзойденное испытание английского языка! Составляйте предложения из перепутанных слов в этой интерактивной игре. Благодаря различным уровням сложности и полезным подсказкам, это идеальный способ улучшить свои навыки английского языка, весело проводя время!';
+        TextGame.textContent =
+            'Погрузитесь в непревзойденное испытание английского языка! Составляйте предложения из перепутанных слов в этой интерактивной игре. Благодаря различным уровням сложности и полезным подсказкам, это идеальный способ улучшить свои навыки английского языка, весело проводя время!';
         Container.appendChild(TextGame);
 
         const BtnWelcom = document.createElement('button');

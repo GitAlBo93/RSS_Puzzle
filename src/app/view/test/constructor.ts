@@ -1,13 +1,10 @@
-export default class constructorView{
+export default class constructorView {
+    constructor() {}
 
-    constructor(){
-    }
-
-    constructorRender(ELEM: string, CLASSES: string, TEXT: string){
+    constructorRender(ELEM: string, CLASSES: string, TEXT: string) {
         const element = document.createElement(ELEM);
         element.className = CLASSES;
         element.innerText = TEXT;
         return element;
     }
-
 }

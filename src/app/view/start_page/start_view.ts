@@ -1,7 +1,13 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/space-before-blocks */
+// import ConstructorView from '../constructor/constructor_view';
 import './start.css';
 
-export default class StartPage {
+// export default class StartPage extends ConstructorView{
+    export default class StartPage{
+    // eslint-disable-next-line @typescript-eslint/space-before-blocks
     constructor(){
+        // super();
         this.startPg();
     }
 
@@ -13,10 +19,18 @@ export default class StartPage {
         Container.className = 'container';
         Section.appendChild(Container);
 
-        const NameGame = document.createElement('h2');
-        NameGame.className = 'name_Game';
-        NameGame.textContent = 'RSS_Puzzle';
-        Container.appendChild(NameGame);
+        // const NameGame = document.createElement('h2');
+        // NameGame.className = 'name_Game';
+        // NameGame.textContent = 'RSS_Puzzle';
+        // Container.appendChild(NameGame);
+
+        // const TYPE = 'h2';
+        // const CLASESS = 'name_Game';
+        // const TEXT = 'RSS_Puzzle';
+        // this.constViewP(TYPE, CLASESS, TEXT);
+
+
+
 
         const Welcom = document.createElement('p');
         Welcom.className = 'welcom';

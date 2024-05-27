@@ -1,13 +1,38 @@
-// export default class ConstructorView {
-//     constructor(){
-//         this.constViewP();
-//     }
-//     constViewP(TYPE: string, CLASSES: string, TEXT: string): HTMLElement {
-//         const constP = document.createElement(TYPE);
-//         constP.className = CLASSES;
-//         constP.textContent = TEXT;
-//         Container.appendChild(constP);
-//         return constP;
-//     }
+export default class ConstructorView {
+    constructor() {}
 
-// }
+    constructorLable(ELEM: string, CLASSES: string, TEXT: string) {
+        const constLable = document.createElement(ELEM);
+        constLable.className = CLASSES;
+        constLable.innerText = TEXT;
+        return constLable;
+    }
+
+    constructorInput(ELEM: string, CLASSES: string, TEXT: string, ID: string, REQUIRED: true) {
+        const constInput = document.createElement(ELEM) as HTMLInputElement;
+        constInput.className = CLASSES;
+        constInput.placeholder = TEXT;
+        constInput.id = ID;
+        constInput.required = REQUIRED;
+        return constInput;
+    }
+
+    constructorForm(ELEM: string, CLASSES: string) {
+        const constForm = document.createElement(ELEM) as HTMLFormElement;
+        constForm.className = CLASSES;
+        return constForm;
+    }
+
+    constructorH1(ELEM: string, CLASSES: string, TEXT: string) {
+        const constH1 = document.createElement(ELEM);
+        constH1.className = CLASSES;
+        constH1.innerText = TEXT;
+        return constH1;
+    }
+
+    constructorDiv(ELEM: string, CLASSES: string) {
+        const constDiv = document.createElement(ELEM) as HTMLDivElement;
+        constDiv.className = CLASSES;
+        return constDiv;
+    }
+}

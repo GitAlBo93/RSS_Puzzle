@@ -6,6 +6,7 @@ export default class Page2 extends constructorView {
         ELEM: 'h1',
         CLASSES: 'classTestP2',
         TEXT: 'TextTestttP2',
+        ID: 'idTest2',
     };
 
     constructor(id: string) {
@@ -27,8 +28,13 @@ export default class Page2 extends constructorView {
     //     return this.conteiner;
     // }
 
-    renderP2() {
-        const innertext = this.constructorRender(Page2.TEST2.ELEM, Page2.TEST2.CLASSES, Page2.TEST2.TEXT);
+    render() {
+        const innertext = this.constructorRender(
+            Page2.TEST2.ELEM,
+            Page2.TEST2.CLASSES,
+            Page2.TEST2.TEXT,
+            Page2.TEST2.ID
+        );
         this.conteiner.append(innertext);
         return this.conteiner;
     }

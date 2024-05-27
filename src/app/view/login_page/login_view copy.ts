@@ -1,42 +1,35 @@
 //import App from "../../app";
 //import {ICreatElement}  from '../../interface/interface';
+import ConstructorView from '../constructor/constructor_view';
 import './login.css';
 
-// const LoginConst = [
-//     {
-//         ELEM: 'section',
-//         CLASSES: 'Section',
-//         TEXT: '',
-//         ID: 'idSection',
-//     },
-//     {
-//         ELEM: 'section',
-//         CLASSES: 'Section',
-//         TEXT: '',
-//         ID: 'idSection',
-//     },
-// ]
+const LoginDiv = [
+    {
+        ELEM: 'div',
+        CLASSES: 'containerFName',
+    },
+    {
+        ELEM: 'div',
+        CLASSES: 'containerLName',
+    },
+];
 
-export default class LoginPage {
+export default class LoginPage extends ConstructorView {
+    private Section: HTMLElement;
+
     constructor() {
-        this.loginPg();
-        // Вызов функции для инициализации элементов на странице и добавление корневого элемента в body
-        //const sectionElement = this.startPg();
-        //document.body.appendChild(sectionElement);
+        super();
+        // this.loginPg();
+
+        this.Section = document.createElement('section');
+        this.Section.className = 'Section';
     }
 
     loginPg(): HTMLElement {
         function createInputFLName(id: string, Placeholder: string): HTMLInputElement {
-            // console.log("create");
-
             const inputFirstName = document.createElement('input');
-            //        inputFirstName.type = "text";
             inputFirstName.id = id;
             inputFirstName.placeholder = Placeholder;
-            //        console.log(id + Placeholder);
-            //        inputField.style.margin = '5px';
-
-            //Поле обязательно для заполнение
             inputFirstName.required = true;
 
             return inputFirstName;
@@ -44,32 +37,24 @@ export default class LoginPage {
 
         function createLableFLName(Text: string): HTMLLabelElement {
             const lableFLName = document.createElement('label');
-            //        lableFLName.title = "Lable";
             lableFLName.textContent = Text;
             lableFLName.className = 'lableFLName';
             return lableFLName;
         }
 
-        const Section = document.createElement('section');
-        Section.className = 'Section';
-        //        document.body.appendChild(Section);
-
         const Container = document.createElement('form');
         Container.className = 'container';
-        Section.appendChild(Container);
+        this.Section.appendChild(Container);
 
         const ContainerGameName = document.createElement('h1');
         ContainerGameName.className = 'containerGName';
         ContainerGameName.innerText = 'RSS-Puzzle';
         Container.appendChild(ContainerGameName);
 
-        const ContainerFName = document.createElement('div');
-        ContainerFName.className = 'containerFName';
-        Container.appendChild(ContainerFName);
-
-        const ContainerLName = document.createElement('div');
-        ContainerLName.className = 'containerLName';
-        Container.appendChild(ContainerLName);
+        LoginDiv.forEach((div) => {
+            const divElem = this.constructorDiv(div.ELEM, div.CLASSES);
+            Container.appendChild(divElem);
+        });
 
         const inputFirstName = createInputFLName('idFirstName', 'Укажите своё имя');
         const labelFirstName = createLableFLName('Имя: ');
@@ -78,22 +63,20 @@ export default class LoginPage {
 
         const inputLastName: HTMLInputElement = createInputFLName('idLastName', 'Укажите свою фамилию');
         const labelLastName = createLableFLName('Фамилия: ');
-        ContainerLName.appendChild(labelLastName);
-        ContainerLName.appendChild(inputLastName);
+        ContainerGameName.appendChild(labelLastName);
+        ContainerGameName.appendChild(inputLastName);
 
         const BtnStartGame: HTMLButtonElement = document.createElement('button');
         BtnStartGame.className = 'btnStartGame';
         BtnStartGame.textContent = 'Game';
         Container.appendChild(BtnStartGame);
-        //    console.log(inputField1);
-        //    console.log(Container);
-        // Пример добавления обработчика событий на кнопку
+
         BtnStartGame.addEventListener('click', (event: MouseEvent) => {
             event.preventDefault();
             console.log('Имя:', inputFirstName.value);
             console.log('Фамилия:', inputLastName.value);
         });
 
-        return Section;
+        return this.Section;
     }
 }

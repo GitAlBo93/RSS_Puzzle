@@ -7,10 +7,12 @@ const LoginDiv = [
     {
         ELEM: 'div',
         CLASSES: 'containerFName',
+        ID: 'containerFName',
     },
     {
         ELEM: 'div',
         CLASSES: 'containerLName',
+        ID: 'containerLName',
     },
 ];
 
@@ -52,14 +54,14 @@ export default class LoginPage extends ConstructorView {
         Container.appendChild(ContainerGameName);
 
         LoginDiv.forEach((div) => {
-            const divElem = this.constructorDiv(div.ELEM, div.CLASSES);
+            const divElem = this.constructorDiv(div.ELEM, div.CLASSES, div.ID);
             Container.appendChild(divElem);
         });
 
         const inputFirstName = createInputFLName('idFirstName', 'Укажите своё имя');
         const labelFirstName = createLableFLName('Имя: ');
-        ContainerFName.appendChild(labelFirstName);
-        ContainerFName.appendChild(inputFirstName);
+        ContainerGameName.appendChild(labelFirstName);
+        ContainerGameName.appendChild(inputFirstName);
 
         const inputLastName: HTMLInputElement = createInputFLName('idLastName', 'Укажите свою фамилию');
         const labelLastName = createLableFLName('Фамилия: ');

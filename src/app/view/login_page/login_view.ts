@@ -2,21 +2,6 @@
 //import {ICreatElement}  from '../../interface/interface';
 import './login.css';
 
-// const LoginConst = [
-//     {
-//         ELEM: 'section',
-//         CLASSES: 'Section',
-//         TEXT: '',
-//         ID: 'idSection',
-//     },
-//     {
-//         ELEM: 'section',
-//         CLASSES: 'Section',
-//         TEXT: '',
-//         ID: 'idSection',
-//     },
-// ]
-
 export default class LoginPage {
     constructor() {
         this.loginPg();

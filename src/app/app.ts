@@ -10,12 +10,14 @@ class App {
     private static container: HTMLElement = document.body;
 
     static renderNewPage(idPage: string) {
-        let page: Page1 | Page2 | null = null;
+        let page: HrefTest | Page1 | Page2 | null = null;
 
         if (idPage === 'idTest1') {
             page = new Page1();
         } else if (idPage === 'idTest2') {
             page = new Page2(idPage);
+        } else if (idPage === 'HREF') {
+            page = new HrefTest(idPage);
         }
 
         if (page) {
@@ -34,20 +36,18 @@ class App {
     }
 
     constructor() {
-        // this.start();
         //console.log("Приложение загружено");
         // let hashPage = window.location.hash.slice(1);
         if (window.location.hash) {
             App.renderNewPage(window.location.hash.slice(1));
+            this.start();
             console.log('YES HASH');
         } else {
-            App.renderNewPage('idTest1');
-            window.location.hash = '#idTest1';
+            App.renderNewPage('HREF');
+            window.location.hash = '#HREF';
             console.log('Not HASH');
         }
-        
         console.log(window.location.hash);
-        
         this.enableRouter();
     }
 
@@ -68,23 +68,25 @@ class App {
             App.container.append(Pages2.render());
         }
 
-        function HREFS() {
-            const Hrefs = new HrefTest('HrefTest');
-            App.container.append(Hrefs.render());
-        }
+        // function HREFS() {
+        //     const Hrefs = new HrefTest('HrefTest');
+        //     App.container.append(Hrefs.render());
+        // }
 
-        HREFS();
+        // HREFS();
 
         const BTN1 = document.getElementById('idHref1');
         BTN1?.addEventListener('click', () => {
             document.body.innerHTML = '';
             PAGES1();
+            window.location.hash = 'idTest1';
             // HREFS();
             console.log('clickBTN1');
         });
 
         const BTN2 = document.getElementById('idHref2');
         BTN2?.addEventListener('click', () => {
+            window.location.hash = 'idTest2';
             document.body.innerHTML = '';
             PAGES2();
             // HREFS();

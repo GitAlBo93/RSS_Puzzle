@@ -1,6 +1,6 @@
 //import App from "../../app";
 //import {ICreatElement}  from '../../interface/interface';
-import { text } from 'stream/consumers';
+
 import './login.css';
 
 export default class LoginPage {
@@ -12,7 +12,7 @@ export default class LoginPage {
     }
 
     render(): HTMLElement {
-        function createInputFLName(id: string, Placeholder: string): HTMLInputElement {
+        function createInputFLName(id: string, Placeholder: string, MINLENGTH: number): HTMLInputElement {
             // console.log("create");
 
             const inputFirstName = document.createElement('input');
@@ -25,7 +25,8 @@ export default class LoginPage {
             //Поле обязательно для заполнение
             inputFirstName.required = true;
             inputFirstName.type = 'text';
-            inputFirstName.minLength = 4;
+            inputFirstName.minLength = MINLENGTH;
+            inputFirstName.pattern = '/^[a-zA-Z]/';
 
             return inputFirstName;
         }
@@ -59,12 +60,12 @@ export default class LoginPage {
         ContainerLName.className = 'containerLName';
         Container.appendChild(ContainerLName);
 
-        const inputFirstName = createInputFLName('idFirstName', 'Укажите своё имя');
+        const inputFirstName = createInputFLName('idFirstName', 'Укажите своё имя', 3);
         const labelFirstName = createLableFLName('Имя: ');
         ContainerFName.appendChild(labelFirstName);
         ContainerFName.appendChild(inputFirstName);
 
-        const inputLastName: HTMLInputElement = createInputFLName('idLastName', 'Укажите свою фамилию');
+        const inputLastName: HTMLInputElement = createInputFLName('idLastName', 'Укажите свою фамилию', 4);
         const labelLastName = createLableFLName('Фамилия: ');
         ContainerLName.appendChild(labelLastName);
         ContainerLName.appendChild(inputLastName);
@@ -84,13 +85,21 @@ export default class LoginPage {
             window.location.hash = 'Start';
         });
 
-        inputFirstName.addEventListener('input', function () {
-            if (inputFirstName.validity.valid) {
+        window.addEventListener('input', function () {
+            if (inputFirstName.validity.valid && inputLastName.validity.valid) {
                 BtnStartGame.disabled = false;
             } else {
                 BtnStartGame.disabled = true;
             }
         });
+
+        // inputLastName.addEventListener('input', function () {
+        //     if (inputLastName.validity.valid) {
+        //         BtnStartGame.disabled = false;
+        //     } else {
+        //         BtnStartGame.disabled = true;
+        //     }
+        // });
 
         return Section;
     }

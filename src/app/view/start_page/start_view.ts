@@ -8,10 +8,10 @@ export default class StartPage {
     // eslint-disable-next-line @typescript-eslint/space-before-blocks
     constructor() {
         // super();
-        this.startPg();
+        this.render();
     }
 
-    startPg(): HTMLElement {
+    render(): HTMLElement {
         const Section = document.createElement('section');
         Section.className = 'Section';
 

@@ -1,16 +1,17 @@
 //import App from "../../app";
 //import {ICreatElement}  from '../../interface/interface';
+import { text } from 'stream/consumers';
 import './login.css';
 
 export default class LoginPage {
     constructor() {
-        this.loginPg();
+        this.render();
         // Вызов функции для инициализации элементов на странице и добавление корневого элемента в body
         //const sectionElement = this.startPg();
         //document.body.appendChild(sectionElement);
     }
 
-    loginPg(): HTMLElement {
+    render(): HTMLElement {
         function createInputFLName(id: string, Placeholder: string): HTMLInputElement {
             // console.log("create");
 
@@ -23,6 +24,8 @@ export default class LoginPage {
 
             //Поле обязательно для заполнение
             inputFirstName.required = true;
+            inputFirstName.type = 'text';
+            inputFirstName.minLength = 4;
 
             return inputFirstName;
         }
@@ -36,11 +39,11 @@ export default class LoginPage {
         }
 
         const Section = document.createElement('section');
-        Section.className = 'Section';
+        Section.className = 'sectionLogin';
         //        document.body.appendChild(Section);
 
         const Container = document.createElement('form');
-        Container.className = 'container';
+        Container.className = 'containerLogin';
         Section.appendChild(Container);
 
         const ContainerGameName = document.createElement('h1');
@@ -69,6 +72,7 @@ export default class LoginPage {
         const BtnStartGame: HTMLButtonElement = document.createElement('button');
         BtnStartGame.className = 'btnStartGame';
         BtnStartGame.textContent = 'Game';
+        BtnStartGame.disabled = true;
         Container.appendChild(BtnStartGame);
         //    console.log(inputField1);
         //    console.log(Container);
@@ -77,6 +81,15 @@ export default class LoginPage {
             event.preventDefault();
             console.log('Имя:', inputFirstName.value);
             console.log('Фамилия:', inputLastName.value);
+            window.location.hash = 'Start';
+        });
+
+        inputFirstName.addEventListener('input', function () {
+            if (inputFirstName.validity.valid) {
+                BtnStartGame.disabled = false;
+            } else {
+                BtnStartGame.disabled = true;
+            }
         });
 
         return Section;

@@ -1,4 +1,4 @@
-.Section  {
+.sectionLogin  {
     margin: 20%;
     /* margin-left: 40%;
     margin-top: 30%; */
@@ -12,7 +12,7 @@
     min-height: 40vh;
 }
 
-.container{
+.containerLogin{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -79,8 +79,12 @@
     opacity: 1;
   } */
 
+#idFirstName:invalid{
+border: 2p solid red;
+}
+
 .btnStartGame {
-    font-family: "Poetsen One", sans-serif;
+  font-family: "Poetsen One", sans-serif;
 	display: inline-block;	
 	box-sizing: border-box;
 	padding: 0 20px;
@@ -88,8 +92,8 @@
 	outline: none;
 	border: none;  
 	border-radius: 6px;
-    height: 60px;
-    width: 200px;
+  height: 60px;
+  width: 200px;
 	line-height: 40px;
 	font-size: 31px;
 	font-weight: 400;
@@ -100,20 +104,24 @@
 	user-select: none;
 	appearance: none;
 	touch-action: manipulation;
-    margin-top: 30px;
+  margin-top: 30px;
 
+    &:focus-visible {
+      box-shadow: 0 0 0 2px #666;
+    }
+
+    &:hover {
+      background-color: #DBE7F2;
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
+
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.65;
+    }
 }
-.btnStartGame:focus-visible {
-	box-shadow: 0 0 0 2px #666;
-}
-.btnStartGame:hover {
-	background-color: #DBE7F2;
-}
-.btnStartGame:active {
-	transform: scale(0.96);
-}
-.btnStartGame:disabled {
-	pointer-events: none;
-	opacity: 0.65;
-}
+
 

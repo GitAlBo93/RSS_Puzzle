@@ -3,7 +3,7 @@
 
 import './login.css';
 
-let inputFlstName: string;
+// let inputFlstName: string;
 
 class LoginPage {
     constructor() {
@@ -85,7 +85,8 @@ class LoginPage {
             console.log('Имя:', inputFirstName.value);
             console.log('Фамилия:', inputLastName.value);
             window.location.hash = 'Start';
-            inputFlstName = inputFirstName.value + ' ' + inputLastName.value;
+            // inputFlstName = inputFirstName.value + ' ' + inputLastName.value;
+            localStorage.setItem('Name', inputFirstName.value);
         });
 
         window.addEventListener('input', function () {
@@ -108,13 +109,15 @@ class LoginPage {
         return Section;
     }
 }
-class getFLName {
-    constructor() {}
-    sendFLName() {
-        // const retFName = inputFlstName;
-        // console.log(retName);
-        return inputFlstName;
-    }
-}
+// class getFLName {
+//     constructor() {}
+//     sendFLName() {
+//         // localStorage.setItem('Name', inputFlstName);
+//         // const retFName = inputFlstName;
+//         // console.log(retName);
+//         return inputFlstName;
+//     }
+// }
 
-export { LoginPage, getFLName };
+export { LoginPage };
+// export { LoginPage, getFLName };

@@ -2,7 +2,8 @@
 /* eslint-disable @typescript-eslint/space-before-blocks */
 // import ConstructorView from '../constructor/constructor_view';
 import './start.css';
-import { getFLName } from '../login_page/login_view';
+// import { getFLName } from '../login_page/login_view';
+import { log } from 'console';
 
 // export default class StartPage extends ConstructorView{
 export default class StartPage {
@@ -13,9 +14,10 @@ export default class StartPage {
     }
 
     render(): HTMLElement {
-        const name = new getFLName();
+        // const name = new getFLName();
         // name.sendFLName();
-
+        console.log(localStorage.getItem('Name'));
+        
         const Section = document.createElement('section');
         Section.className = 'Section';
 
@@ -35,7 +37,8 @@ export default class StartPage {
 
         const Welcom = document.createElement('p');
         Welcom.className = 'welcom';
-        Welcom.textContent = 'Welcom in Puzzle ' + name.sendFLName();
+        // Welcom.textContent = 'Welcom in Puzzle ' + name.sendFLName();
+        Welcom.textContent = 'Welcom in Puzzle ' + localStorage.getItem('Name');
         Container.appendChild(Welcom);
 
         const TextGame = document.createElement('p');

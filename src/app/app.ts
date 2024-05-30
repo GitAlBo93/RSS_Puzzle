@@ -1,3 +1,4 @@
+import GamePage from './view/game_page/game_view';
 import { LoginPage } from './view/login_page/login_view';
 import StartPage from './view/start_page/start_view';
 // import Page1 from './view/test/test_page1/testp1';
@@ -11,12 +12,14 @@ class App {
 
     static renderNewPage(idPage: string) {
         // let page: HrefTest | Page1 | Page2 | null = null;
-        let page: LoginPage | StartPage | null = null;
+        let page: LoginPage | StartPage | GamePage | null = null;
 
         if (idPage === 'Login') {
             page = new LoginPage();
         } else if (idPage === 'Start') {
             page = new StartPage();
+        } else if (idPage === 'Game') {
+            page = new GamePage();
         }
         //  else if (idPage === 'HREF') {
         //     page = new HrefTest(idPage);

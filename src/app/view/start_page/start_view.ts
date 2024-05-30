@@ -1,10 +1,8 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/space-before-blocks */
 // import ConstructorView from '../constructor/constructor_view';
-import { hash } from 'crypto';
 import './start.css';
 // import { getFLName } from '../login_page/login_view';
-import { log } from 'console';
 
 // export default class StartPage extends ConstructorView{
 export default class StartPage {
@@ -20,10 +18,10 @@ export default class StartPage {
         console.log(localStorage.getItem('Name'));
         
         const Section = document.createElement('section');
-        Section.className = 'Section';
+        Section.className = 'sectionStart';
 
         const Container = document.createElement('form');
-        Container.className = 'container';
+        Container.className = 'containerStart';
         Section.appendChild(Container);
 
         // const NameGame = document.createElement('h2');
@@ -52,6 +50,10 @@ export default class StartPage {
         BtnWelcom.className = 'welcom_btn';
         BtnWelcom.textContent = 'Game Start';
         Container.appendChild(BtnWelcom);
+
+        BtnWelcom.addEventListener('click', ()=> {
+            window.location.hash = 'Game';
+        });
 
         const BtnLogOff = document.createElement('button');
         BtnLogOff.className = 'logOff_btn';

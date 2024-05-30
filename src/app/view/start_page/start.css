@@ -1,4 +1,4 @@
-.Section  {
+.sectionStart  {
     margin: 20%;
     /* margin-left: 40%;
     margin-top: 30%; */
@@ -12,7 +12,7 @@
     min-height: 40vh;
 }
 
-.container{
+.containerStart{
     display: flex;
     align-items: center;
     flex-direction: column;

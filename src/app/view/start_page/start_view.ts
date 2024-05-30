@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/space-before-blocks */
 // import ConstructorView from '../constructor/constructor_view';
+import { hash } from 'crypto';
 import './start.css';
 // import { getFLName } from '../login_page/login_view';
 import { log } from 'console';
@@ -38,7 +39,7 @@ export default class StartPage {
         const Welcom = document.createElement('p');
         Welcom.className = 'welcom';
         // Welcom.textContent = 'Welcom in Puzzle ' + name.sendFLName();
-        Welcom.textContent = 'Welcom in Puzzle ' + localStorage.getItem('Name');
+        Welcom.textContent = 'Welcom in Puzzle ' + localStorage.getItem('Name') + ' ' + localStorage.getItem('LastName');
         Container.appendChild(Welcom);
 
         const TextGame = document.createElement('p');
@@ -56,6 +57,13 @@ export default class StartPage {
         BtnLogOff.className = 'logOff_btn';
         BtnLogOff.textContent = 'Выход';
         Container.appendChild(BtnLogOff);
+
+        BtnLogOff.addEventListener('click', ()=> {
+            localStorage.clear();
+            window.location.hash = 'Login';
+            // console.log(localStorage);
+            
+        })
 
         return Section;
     }

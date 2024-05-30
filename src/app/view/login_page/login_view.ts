@@ -87,6 +87,7 @@ class LoginPage {
             window.location.hash = 'Start';
             // inputFlstName = inputFirstName.value + ' ' + inputLastName.value;
             localStorage.setItem('Name', inputFirstName.value);
+            localStorage.setItem('LastName', inputLastName.value);
         });
 
         window.addEventListener('input', function () {

@@ -89,7 +89,7 @@ class LoginPage {
         });
 
         window.addEventListener('input', function () {
-            // if (inputFirstName.validity.valid && inputLastName.validity.valid) 
+            // if (inputFirstName.validity.valid && inputLastName.validity.valid)
             if (inputFirstName.validity.valid && inputLastName.validity.valid) {
                 BtnStartGame.disabled = false;
             } else {
@@ -107,11 +107,9 @@ class LoginPage {
 
         return Section;
     }
-
 }
 class getFLName {
-    constructor() {
-    }
+    constructor() {}
     sendFLName() {
         // const retFName = inputFlstName;
         // console.log(retName);
@@ -119,4 +117,4 @@ class getFLName {
     }
 }
 
-export {LoginPage, getFLName}
+export { LoginPage, getFLName };

@@ -1,4 +1,4 @@
-import {LoginPage} from './view/login_page/login_view';
+import { LoginPage } from './view/login_page/login_view';
 import StartPage from './view/start_page/start_view';
 // import Page1 from './view/test/test_page1/testp1';
 // import Page2 from './view/test/test_page2/testp2';
@@ -65,40 +65,40 @@ class App {
     //         App.container.append(PageStart.render());
     //     }
 
-        // function PAGES1() {
-        //     const Pages1 = new Page1();
-        //     App.container.append(Pages1.render());
-        // }
+    // function PAGES1() {
+    //     const Pages1 = new Page1();
+    //     App.container.append(Pages1.render());
+    // }
 
-        // function PAGES2() {
-        //     const Pages2 = new Page2('Page2');
-        //     App.container.append(Pages2.render());
-        // }
+    // function PAGES2() {
+    //     const Pages2 = new Page2('Page2');
+    //     App.container.append(Pages2.render());
+    // }
 
-        // function HREFS() {
-        //     const Hrefs = new HrefTest('HrefTest');
-        //     App.container.append(Hrefs.render());
-        // }
+    // function HREFS() {
+    //     const Hrefs = new HrefTest('HrefTest');
+    //     App.container.append(Hrefs.render());
+    // }
 
-        // HREFS();
+    // HREFS();
 
-        // const BTN1 = document.getElementById('idHref1');
-        // BTN1?.addEventListener('click', () => {
-        //     document.body.innerHTML = '';
-        //     PAGES1();
-        //     window.location.hash = 'idTest1';
-        //     // HREFS();
-        //     console.log('clickBTN1');
-        // });
+    // const BTN1 = document.getElementById('idHref1');
+    // BTN1?.addEventListener('click', () => {
+    //     document.body.innerHTML = '';
+    //     PAGES1();
+    //     window.location.hash = 'idTest1';
+    //     // HREFS();
+    //     console.log('clickBTN1');
+    // });
 
-        // const BTN2 = document.getElementById('idHref2');
-        // BTN2?.addEventListener('click', () => {
-        //     window.location.hash = 'idTest2';
-        //     document.body.innerHTML = '';
-        //     PAGES2();
-        //     // HREFS();
-        //     console.log('clickBTN2');
-        // });
+    // const BTN2 = document.getElementById('idHref2');
+    // BTN2?.addEventListener('click', () => {
+    //     window.location.hash = 'idTest2';
+    //     document.body.innerHTML = '';
+    //     PAGES2();
+    //     // HREFS();
+    //     console.log('clickBTN2');
+    // });
     // }
 }
 

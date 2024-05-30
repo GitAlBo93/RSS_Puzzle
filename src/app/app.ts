@@ -1,4 +1,4 @@
-import LoginPage from './view/login_page/login_view';
+import {LoginPage} from './view/login_page/login_view';
 import StartPage from './view/start_page/start_view';
 // import Page1 from './view/test/test_page1/testp1';
 // import Page2 from './view/test/test_page2/testp2';

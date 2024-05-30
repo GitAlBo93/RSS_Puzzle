@@ -3,7 +3,9 @@
 
 import './login.css';
 
-export default class LoginPage {
+let inputFlstName: string;
+
+class LoginPage {
     constructor() {
         this.render();
         // Вызов функции для инициализации элементов на странице и добавление корневого элемента в body
@@ -26,7 +28,7 @@ export default class LoginPage {
             inputFirstName.required = true;
             inputFirstName.type = 'text';
             inputFirstName.minLength = MINLENGTH;
-            inputFirstName.pattern = '/^[a-zA-Z]/';
+            // inputFirstName.pattern = '[A-Z]\w';
 
             return inputFirstName;
         }
@@ -83,9 +85,11 @@ export default class LoginPage {
             console.log('Имя:', inputFirstName.value);
             console.log('Фамилия:', inputLastName.value);
             window.location.hash = 'Start';
+            inputFlstName = inputFirstName.value + ' ' + inputLastName.value;
         });
 
         window.addEventListener('input', function () {
+            // if (inputFirstName.validity.valid && inputLastName.validity.valid) 
             if (inputFirstName.validity.valid && inputLastName.validity.valid) {
                 BtnStartGame.disabled = false;
             } else {
@@ -103,4 +107,16 @@ export default class LoginPage {
 
         return Section;
     }
+
 }
+class getFLName {
+    constructor() {
+    }
+    sendFLName() {
+        // const retFName = inputFlstName;
+        // console.log(retName);
+        return inputFlstName;
+    }
+}
+
+export {LoginPage, getFLName}

@@ -69,6 +69,7 @@ export default class GamePage extends ConstructorView {
         TaskDiv.appendChild(SentTaskDiv);
 
         const PuzzleDiv = this.constructorDiv('div', 'puzzleDiv', 'puzzleDivID');
+        // PuzzleDiv.style.backgroundImage = "url('../../../../../images/body_img.sjpg')";
         Section.appendChild(PuzzleDiv);
 
         const SentenceDiv = this.constructorDiv('div', 'sentenceDiv', 'sentenceDivID');
@@ -91,6 +92,8 @@ export default class GamePage extends ConstructorView {
         const Collection1 = CollectionLevel1;
         const LengtSentence = Collection1.rounds[0].words.length - 1;
 
+        console.log(Collection1);
+
         for (let index = 0; index < Collection1.rounds[0].words.length; index++) {
             const element = this.constructorSelectOption(
                 'option',
@@ -103,12 +106,20 @@ export default class GamePage extends ConstructorView {
         }
         console.log(Collection1.rounds[0]);
 
-        const SentenceSplit =
-            Collection1.rounds[0].words[randomFunction(0, LengtSentence)].textExampleTranslate.split(' ');
-        // console.log(worlds.rounds[0]);
-        // console.log(lengtWords);
-        console.log(randomFunction(0, LengtSentence));
-        SentenceSplit.forEach((world) => {
+        const randomNumber = randomFunction(0, LengtSentence);
+
+        // const SentenceSplitEN = Collection1.rounds[0].words[randomFunction(0, LengtSentence)].textExample.split(' ');
+        const SentenceSplitEN = Collection1.rounds[0].words[randomNumber].textExample.split(' ');
+        const SentenceSplitRUS = Collection1.rounds[0].words[randomNumber].textExampleTranslate;
+        //String(SentenceSplit).replace(/,/g, ' ') - преобразование объекта в строку и замена запятых на пробелы
+        // const SentTaskRus = this.constructorH1('h2', 'sentTaskRus', String(SentenceSplit).replace(/,/g, ' '));
+        const SentTaskRus = this.constructorH1('h2', 'sentTaskRus', String(SentenceSplitRUS));
+        SentTaskDiv.appendChild(SentTaskRus);
+
+        console.log('random ' + randomFunction(0, LengtSentence)); //Number
+        console.log('SentSplit ' + typeof SentenceSplitEN); //предложение
+
+        SentenceSplitEN.forEach((world) => {
             const testWorlds = this.constructorH1('h1', 'testWorldsClass', world);
             SentencePuzzleDiv.appendChild(testWorlds);
         });

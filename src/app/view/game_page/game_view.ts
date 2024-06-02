@@ -1,16 +1,20 @@
 import ConstructorView from '../constructor/constructor_view';
-import CollectionWorld from '../../../data/wordCollectionLevel1.json';
+import CollectionLevel1 from '../../../data/wordCollectionLevel1.json';
 
 import './game.css';
 
 export default class GamePage extends ConstructorView {
+
     constructor() {
         super();
         this.render();
-        console.log(CollectionWorld);
+        // console.log(CollectionWorld);
+        // const elem = CollectionWorld;
+        // console.log(elem.rounds[0].words[0].textExampleTranslate);
     }
 
     render() {
+
         const Section = document.createElement('section');
         Section.className = 'sectionGame';
 
@@ -44,11 +48,21 @@ export default class GamePage extends ConstructorView {
         const BTNSentenceDiv = this.constructorDiv('div', 'BTNSentDiv', 'BTNSentDivID');
         SentenceDiv.appendChild(BTNSentenceDiv);
 
-        const worlds = 'Они прибыли в школу в 7 часов утра';
-        let worldsSplit = worlds.split(' ');
-        console.log(worldsSplit);
+        // const randomFunct = (min: number, max: number): number => {
+        // return min + Math.floor((max - min + 1) * Math.random());
+        // };
 
-        worldsSplit.forEach((world) => {
+        // Блок с выбором рандомных предложений
+        function randomFunction(min: number, max: number) {
+            return min + Math.floor((max - min + 1) * Math.random());
+        };
+        const Collection1 = CollectionLevel1;
+        const LengtSentence = Collection1.rounds[0].words.length - 1;
+        const SentenceSplit = Collection1.rounds[0].words[randomFunction(0, LengtSentence)].textExampleTranslate.split(' ');
+        // console.log(worlds.rounds[0]);
+        // console.log(lengtWords);
+        console.log(randomFunction(0, LengtSentence));
+        SentenceSplit.forEach((world) => {
             const testWorlds = this.constructorH1('h1', 'testWorldsClass', world);
             SentencePuzzleDiv.appendChild(testWorlds);
         });

@@ -1,10 +1,13 @@
 import ConstructorView from '../constructor/constructor_view';
+import CollectionWorld from '../../../data/wordCollectionLevel1.json';
+
 import './game.css';
 
 export default class GamePage extends ConstructorView {
     constructor() {
         super();
         this.render();
+        console.log(CollectionWorld);
     }
 
     render() {
@@ -14,20 +17,20 @@ export default class GamePage extends ConstructorView {
         const SettingDiv = this.constructorDiv('div', 'settingDiv', 'settingDivID');
         Section.appendChild(SettingDiv);
 
-            const  LevelDiv = this.constructorForm('div', 'levelDiv');
-            SettingDiv.appendChild(LevelDiv);
+        const LevelDiv = this.constructorForm('div', 'levelDiv');
+        SettingDiv.appendChild(LevelDiv);
 
-            const  SetBtnDiv = this.constructorForm('div', 'setBtnDiv');
-            SettingDiv.appendChild(SetBtnDiv);
+        const SetBtnDiv = this.constructorForm('div', 'setBtnDiv');
+        SettingDiv.appendChild(SetBtnDiv);
 
         const TaskDiv = this.constructorDiv('div', 'taskDiv', 'taskDivID');
         Section.appendChild(TaskDiv);
 
-            const SpeakTaskDiv = this.constructorDiv('div', 'speakTaskDiv', 'speakTaskDivID');
-            TaskDiv.appendChild(SpeakTaskDiv);
+        const SpeakTaskDiv = this.constructorDiv('div', 'speakTaskDiv', 'speakTaskDivID');
+        TaskDiv.appendChild(SpeakTaskDiv);
 
-            const SentTaskDiv = this.constructorDiv('div', 'sentTaskDiv', 'sentTaskDivID');
-            TaskDiv.appendChild(SentTaskDiv);
+        const SentTaskDiv = this.constructorDiv('div', 'sentTaskDiv', 'sentTaskDivID');
+        TaskDiv.appendChild(SentTaskDiv);
 
         const PuzzleDiv = this.constructorDiv('div', 'puzzleDiv', 'puzzleDivID');
         Section.appendChild(PuzzleDiv);
@@ -35,23 +38,20 @@ export default class GamePage extends ConstructorView {
         const SentenceDiv = this.constructorDiv('div', 'sentenceDiv', 'sentenceDivID');
         Section.appendChild(SentenceDiv);
 
-            const SentencePuzzleDiv = this.constructorDiv('div', 'sentPuzzleDiv', 'sentPuzzleDivID');
-            SentenceDiv.appendChild(SentencePuzzleDiv);
+        const SentencePuzzleDiv = this.constructorDiv('div', 'sentPuzzleDiv', 'sentPuzzleDivID');
+        SentenceDiv.appendChild(SentencePuzzleDiv);
 
-            const BTNSentenceDiv = this.constructorDiv('div', 'BTNSentDiv', 'BTNSentDivID');
-            SentenceDiv.appendChild(BTNSentenceDiv);
+        const BTNSentenceDiv = this.constructorDiv('div', 'BTNSentDiv', 'BTNSentDivID');
+        SentenceDiv.appendChild(BTNSentenceDiv);
 
-            const worlds = 'Они прибыли в школу в 7 часов утра';
-            let worldsSplit = worlds.split(' ');
-            console.log(worldsSplit);
+        const worlds = 'Они прибыли в школу в 7 часов утра';
+        let worldsSplit = worlds.split(' ');
+        console.log(worldsSplit);
 
-            worldsSplit.forEach((world) =>{
+        worldsSplit.forEach((world) => {
             const testWorlds = this.constructorH1('h1', 'testWorldsClass', world);
-            SentenceDiv.appendChild(testWorlds);  
-            });
-
-
-        
+            SentencePuzzleDiv.appendChild(testWorlds);
+        });
 
         return Section;
     }

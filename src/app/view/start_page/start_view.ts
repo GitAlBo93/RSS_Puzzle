@@ -16,7 +16,7 @@ export default class StartPage {
         // const name = new getFLName();
         // name.sendFLName();
         console.log(localStorage.getItem('Name'));
-        
+
         const Section = document.createElement('section');
         Section.className = 'sectionStart';
 
@@ -37,7 +37,8 @@ export default class StartPage {
         const Welcom = document.createElement('p');
         Welcom.className = 'welcom';
         // Welcom.textContent = 'Welcom in Puzzle ' + name.sendFLName();
-        Welcom.textContent = 'Welcom in Puzzle ' + localStorage.getItem('Name') + ' ' + localStorage.getItem('LastName');
+        Welcom.textContent =
+            'Welcom in Puzzle ' + localStorage.getItem('Name') + ' ' + localStorage.getItem('LastName');
         Container.appendChild(Welcom);
 
         const TextGame = document.createElement('p');
@@ -51,7 +52,7 @@ export default class StartPage {
         BtnWelcom.textContent = 'Game Start';
         Container.appendChild(BtnWelcom);
 
-        BtnWelcom.addEventListener('click', ()=> {
+        BtnWelcom.addEventListener('click', () => {
             window.location.hash = 'Game';
         });
 
@@ -60,12 +61,11 @@ export default class StartPage {
         BtnLogOff.textContent = 'Выход';
         Container.appendChild(BtnLogOff);
 
-        BtnLogOff.addEventListener('click', ()=> {
+        BtnLogOff.addEventListener('click', () => {
             localStorage.clear();
             window.location.hash = 'Login';
             // console.log(localStorage);
-            
-        })
+        });
 
         return Section;
     }

@@ -36,4 +36,13 @@ export default class ConstructorView {
         constDiv.id = ID;
         return constDiv;
     }
+
+    constructorSelectOption(ELEM: string, CLASSES: string, ID: string, VALUE: string, TEXT: string) {
+        const consSelect = document.createElement(ELEM) as HTMLSelectElement;
+        consSelect.className = CLASSES;
+        consSelect.id = ID;
+        consSelect.value = VALUE;
+        consSelect.textContent = TEXT;
+        return consSelect;
+    }
 }

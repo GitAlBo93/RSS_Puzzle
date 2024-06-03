@@ -2,6 +2,7 @@ import ConstructorView from '../constructor/constructor_view';
 import CollectionLevel1 from '../../../data/wordCollectionLevel1.json';
 
 import './game.css';
+import { log } from 'console';
 
 export default class GamePage extends ConstructorView {
     constructor() {
@@ -47,7 +48,9 @@ export default class GamePage extends ConstructorView {
         });
         const PageLable = this.constructorLable('lable', 'pageLable', 'Page: ');
         LevelDiv.appendChild(PageLable);
-        const PageSelector = this.constructorDiv('select', 'pageSelector', 'pageSelectorID');
+        const PageSelector = this.constructorDiv('select', 'pageSelector', 'pageSelectorID') as HTMLSelectElement;
+        PageSelector.addEventListener('change', SelectPageSelector);
+
         LevelDiv.appendChild(PageSelector);
         // const PageOptions1 = this.constructorSelectOption('option', 'PageOptions1', 'PageOptions1ID', '1', '1');
         // PageSelector.appendChild(PageOptions1);
@@ -91,22 +94,46 @@ export default class GamePage extends ConstructorView {
         }
         const Collection1 = CollectionLevel1;
         const LengtSentence = Collection1.rounds[0].words.length - 1;
+        // const LengtSentence = Collection1.rounds.length - 1;
 
-        console.log(Collection1);
+        console.log(Collection1.rounds.length);
+        let indexSelector = 1;
 
-        for (let index = 0; index < Collection1.rounds[0].words.length; index++) {
+        for (indexSelector = 1; indexSelector < Collection1.rounds.length + 1; indexSelector++) {
             const element = this.constructorSelectOption(
                 'option',
-                'PageOptions' + index,
-                'PageOptions' + String(index),
-                String(index),
-                String(index)
+                'PageOptions' + indexSelector,
+                'PageOptions' + String(indexSelector),
+                String(indexSelector),
+                String(indexSelector)
             );
             PageSelector.appendChild(element);
         }
-        console.log(Collection1.rounds[0]);
+        let randomNumber = randomFunction(0, LengtSentence);
+        // let randomNumber: number;
+        let textExampleRandom: number = Number(PageSelector.value);
 
-        const randomNumber = randomFunction(0, LengtSentence);
+        // let insert = PageSelector.addEventListener('change',);
+
+        // PageSelector.addEventListener('change', SelectPageSelector);
+
+        console.log(textExampleRandom + ' ' + randomNumber);
+
+        function SelectPageSelector() {
+            if (textExampleRandom === randomNumber) {
+                console.log('yclovie');
+            } else {
+                // randomNumber = randomFunction(0, LengtSentence);
+                console.log('NEEyclovie');
+                randomNumber = Number(PageSelector.value);
+            }
+
+            console.log('Randommm' + randomNumber);
+            return randomNumber;
+        }
+
+        // console.log(Collection1.rounds[0]);
+        console.log('Randommmin' + randomNumber);
 
         // const SentenceSplitEN = Collection1.rounds[0].words[randomFunction(0, LengtSentence)].textExample.split(' ');
         const SentenceSplitEN = Collection1.rounds[0].words[randomNumber].textExample.split(' ');

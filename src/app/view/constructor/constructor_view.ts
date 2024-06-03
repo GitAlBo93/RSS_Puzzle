@@ -31,7 +31,7 @@ export default class ConstructorView {
     }
 
     constructorDiv(ELEM: string, CLASSES: string, ID: string) {
-        const constDiv = document.createElement(ELEM) as HTMLDivElement;
+        const constDiv = document.createElement(ELEM);
         constDiv.className = CLASSES;
         constDiv.id = ID;
         return constDiv;

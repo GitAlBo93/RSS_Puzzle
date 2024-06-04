@@ -47,12 +47,17 @@ class App {
             App.renderNewPage(window.location.hash.slice(1));
             // this.start();
             console.log('YES HASH');
-        } else {
+        } else if (!window.location.hash && localStorage.length == 0) {
             App.renderNewPage('Login');
             window.location.hash = '#Login';
             console.log('Not HASH');
+        } else if (!window.location.hash && localStorage.length > 0) {
+            App.renderNewPage('Game');
+            window.location.hash = '#Game';
         }
         console.log(window.location.hash);
+        console.log(localStorage.length);
+
         this.enableRouter();
     }
 

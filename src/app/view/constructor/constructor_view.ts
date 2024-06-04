@@ -45,4 +45,10 @@ export default class ConstructorView {
         consSelect.textContent = TEXT;
         return consSelect;
     }
+
+    constructorIMG() {
+        const consIMG = document.createElement('img');
+        consIMG.src = '../../../../src/img/loud_on.png';
+        return consIMG;
+    }
 }

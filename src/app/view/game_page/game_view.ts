@@ -2,7 +2,6 @@ import ConstructorView from '../constructor/constructor_view';
 import CollectionLevel1 from '../../../data/wordCollectionLevel1.json';
 
 import './game.css';
-import { log } from 'console';
 
 export default class GamePage extends ConstructorView {
     constructor() {
@@ -60,7 +59,9 @@ export default class GamePage extends ConstructorView {
         // PageSelector.appendChild(PageOptions3);
 
         const SetBtnDiv = this.constructorForm('div', 'setBtnDiv');
+        const ImgHelp = this.constructorIMG();
         SettingDiv.appendChild(SetBtnDiv);
+        SetBtnDiv.appendChild(ImgHelp);
 
         const TaskDiv = this.constructorDiv('div', 'taskDiv', 'taskDivID');
         Section.appendChild(TaskDiv);

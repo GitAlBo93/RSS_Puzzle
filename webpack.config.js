@@ -9,6 +9,10 @@ const DotenvWebpackPlugin = require('dotenv-webpack');
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.ts'),
     mode: 'development',
+    output: {
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
     module: {
         rules: [
             {
@@ -19,7 +23,21 @@ const baseConfig = {
                 test: /\.[tj]s$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
-            }
+            },
+            // {
+            //     test: /\.(png|jpg|gif)$/,
+            //     use: [
+            //         {
+            //             loader: 'file-loader',
+            //             options: {
+            //                 name: '[path][name].[ext]',
+            //                 context: 'src', // Base directory (absolute path) for the context.
+            //                 outputPath: 'imag/', // Output directory for images
+            //                 publicPath: 'imag/', // Public URL to use in the browser
+            //             }
+            //         }
+            //     ]
+            // },
         ],
     },
     resolve: {

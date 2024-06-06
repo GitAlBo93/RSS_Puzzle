@@ -1,3 +1,5 @@
+import { url } from "inspector";
+
 export default class ConstructorView {
     constructor() {}
 
@@ -48,7 +50,9 @@ export default class ConstructorView {
 
     constructorIMG() {
         const consIMG = document.createElement('img');
-        consIMG.src = '../../../../src/img/loud_on.png';
+        consIMG.src = './src/img/body_img.jpg';
+        consIMG.alt = 'Подсказка "Голосом"';
+
         return consIMG;
     }
 }

@@ -4,6 +4,9 @@ import CollectionLevel1 from '../../../data/wordCollectionLevel1.json';
 import './game.css';
 
 export default class GamePage extends ConstructorView {
+
+    // private massClickSentenc: string[] = [];
+
     constructor() {
         super();
         this.render();
@@ -81,6 +84,7 @@ export default class GamePage extends ConstructorView {
 
         const SentencePuzzleDiv = this.constructorDiv('div', 'sentPuzzleDiv', 'sentPuzzleDivID');
         SentenceDiv.appendChild(SentencePuzzleDiv);
+        // SentencePuzzleDiv.addEventListener('click', clickBTNWorlds);
 
         const BTNSentenceDiv = this.constructorDiv('div', 'BTNSentDiv', 'BTNSentDivID');
         SentenceDiv.appendChild(BTNSentenceDiv);
@@ -97,10 +101,10 @@ export default class GamePage extends ConstructorView {
         const LengtSentence = Collection1.rounds[0].words.length - 1;
         // const LengtSentence = Collection1.rounds.length - 1;
 
-        console.log(Collection1.rounds.length);
+        console.log(Collection1.rounds[0].words);
         let indexSelector = 1;
 
-        for (indexSelector = 1; indexSelector < Collection1.rounds.length + 1; indexSelector++) {
+        for (indexSelector; indexSelector < Collection1.rounds.length + 1; indexSelector++) {
             const element = this.constructorSelectOption(
                 'option',
                 'PageOptions' + indexSelector,
@@ -137,20 +141,43 @@ export default class GamePage extends ConstructorView {
         console.log('Randommmin' + randomNumber);
 
         // const SentenceSplitEN = Collection1.rounds[0].words[randomFunction(0, LengtSentence)].textExample.split(' ');
-        const SentenceSplitEN = Collection1.rounds[0].words[randomNumber].textExample.split(' ');
+        const SentenceSplitEN = Collection1.rounds[0].words[randomNumber].textExample.split(' ').sort(()=> Math.random() - 0.7);
         const SentenceSplitRUS = Collection1.rounds[0].words[randomNumber].textExampleTranslate;
+        
+        // // Добавляем в блок Пазла все предложения на нулевом уровне
+        // for (let i = 0; i < Collection1.rounds[0].words.length; i++) {
+        //     const split: string = Collection1.rounds[0].words[i].textExampleTranslate;
+        //     const puzzleSplitRus = this.constructorH1('h4', 'puzzleSplit', split);
+        //     PuzzleDiv.appendChild(puzzleSplitRus);
+        // }
+
         //String(SentenceSplit).replace(/,/g, ' ') - преобразование объекта в строку и замена запятых на пробелы
         // const SentTaskRus = this.constructorH1('h2', 'sentTaskRus', String(SentenceSplit).replace(/,/g, ' '));
         const SentTaskRus = this.constructorH1('h2', 'sentTaskRus', String(SentenceSplitRUS));
         SentTaskDiv.appendChild(SentTaskRus);
 
         console.log('random ' + randomFunction(0, LengtSentence)); //Number
-        console.log('SentSplit ' + typeof SentenceSplitEN); //предложение
+        console.log(SentenceSplitEN); //предложение
 
         SentenceSplitEN.forEach((world) => {
-            const testWorlds = this.constructorH1('h1', 'testWorldsClass', world);
+            const testWorlds = this.constructorH1('button', 'testWorldsClass', world);
+            const PuzzleSentRus = this.constructorH1('h4', 'puzzleSplit none', world);
             SentencePuzzleDiv.appendChild(testWorlds);
+            PuzzleDiv.appendChild(PuzzleSentRus);
+            testWorlds.addEventListener('click', () => clickBTNWorlds(world));
+            // return world;
         });
+
+        const massClickSentenc: string[] = [];
+
+        function clickBTNWorlds(world: string) {
+            massClickSentenc.push(world);
+            console.log(world);
+            console.log(massClickSentenc);
+        }
+
+        console.log(massClickSentenc);
+        
 
         return Section;
     }

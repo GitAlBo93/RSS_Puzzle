@@ -142,7 +142,10 @@ export default class GamePage extends ConstructorView {
 
         // const SentenceSplitEN = Collection1.rounds[0].words[randomFunction(0, LengtSentence)].textExample.split(' ');
         const SentenceSplitEN = Collection1.rounds[0].words[randomNumber].textExample.split(' ').sort(()=> Math.random() - 0.7);
+        const SentenceSplitENEQ = Collection1.rounds[0].words[randomNumber].textExample.split(' ');
         const SentenceSplitRUS = Collection1.rounds[0].words[randomNumber].textExampleTranslate;
+        console.log(SentenceSplitENEQ);
+        
         
         // // Добавляем в блок Пазла все предложения на нулевом уровне
         // for (let i = 0; i < Collection1.rounds[0].words.length; i++) {
@@ -153,30 +156,46 @@ export default class GamePage extends ConstructorView {
 
         //String(SentenceSplit).replace(/,/g, ' ') - преобразование объекта в строку и замена запятых на пробелы
         // const SentTaskRus = this.constructorH1('h2', 'sentTaskRus', String(SentenceSplit).replace(/,/g, ' '));
-        const SentTaskRus = this.constructorH1('h2', 'sentTaskRus', String(SentenceSplitRUS));
+        const SentTaskRus = this.constructorH1('h2', 'sentTaskRus', 'sentTaskRusID', String(SentenceSplitRUS));
         SentTaskDiv.appendChild(SentTaskRus);
 
         console.log('random ' + randomFunction(0, LengtSentence)); //Number
         console.log(SentenceSplitEN); //предложение
 
         SentenceSplitEN.forEach((world) => {
-            const testWorlds = this.constructorH1('button', 'testWorldsClass', world);
-            const PuzzleSentRus = this.constructorH1('h4', 'puzzleSplit none', world);
+            const testWorlds = this.constructorH1('button', 'testWorldsClass' + world, 'testWorldsID' + world, world);
+            // const PuzzleSentRus = this.constructorH1('h4', 'puzzleSplit none', 'puzzleSplit' + world, world);
             SentencePuzzleDiv.appendChild(testWorlds);
-            PuzzleDiv.appendChild(PuzzleSentRus);
+            // PuzzleDiv.appendChild(PuzzleSentRus);
             testWorlds.addEventListener('click', () => clickBTNWorlds(world));
             // return world;
         });
 
         const massClickSentenc: string[] = [];
 
-        function clickBTNWorlds(world: string) {
+        const clickBTNWorlds = (world: string) => {
             massClickSentenc.push(world);
-            console.log(world);
+            // console.log(world);
             console.log(massClickSentenc);
-        }
+            document.getElementById('testWorldsID' + world)?.classList.add('none');
+            const PuzzleSentRus = this.constructorH1('button', 'puzzleSplit', 'puzzleSplit' + world, world);
+            PuzzleDiv.appendChild(PuzzleSentRus);
+            // clickBtn?.classList.add('none');
+            // document.getElementById('puzzleSplit' + world)?.classList.remove('none');
+            // PuzzleBtn?.classList.remove('none');
+            ArrEq(SentenceSplitENEQ, massClickSentenc);
+        };
 
+        function ArrEq(SentenceSplitENEQ: string[], massClickSentenc: string[]) {
+            if (SentenceSplitENEQ.toString() === massClickSentenc.toString()) {
+                console.log('Массивы совпадают');
+            } else {
+                console.log(massClickSentenc);
+            }
+
+        }
         console.log(massClickSentenc);
+
         
 
         return Section;

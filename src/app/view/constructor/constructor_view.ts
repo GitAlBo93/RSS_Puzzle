@@ -25,9 +25,10 @@ export default class ConstructorView {
         return constForm;
     }
 
-    constructorH1(ELEM: string, CLASSES: string, TEXT: string) {
+    constructorH1(ELEM: string, CLASSES: string, ID: string, TEXT: string) {
         const constH1 = document.createElement(ELEM);
         constH1.className = CLASSES;
+        constH1.id = ID;
         constH1.innerText = TEXT;
         return constH1;
     }

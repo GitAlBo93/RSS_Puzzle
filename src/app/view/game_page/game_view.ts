@@ -94,17 +94,30 @@ export default class GamePage extends ConstructorView {
         // };
 
         // Блок с выбором рандомных предложений
-        function randomFunction(min: number, max: number) {
-            return min + Math.floor((max - min + 1) * Math.random());
+        // function randomFunction(min: number, max: number) {
+        //     return min + Math.floor((max - min + 1) * Math.random());
+        // }
+
+        function randomArr(ArraySent: number[]) {
+            const randomElement = Math.floor(Math.random() * ArraySent.length);
+            console.log(randomElement);
+            return randomElement;
         }
+        // randomArr(Collection1.rounds[0].words);
+
         const Collection1 = CollectionLevel1;
         const LengtSentence = Collection1.rounds[0].words.length - 1;
+
+        const ArraySent = Array.from({length: LengtSentence + 1}, (_, i) => i);
+        console.log(ArraySent);
+        
+        // const LengtSentence = Collection1.rounds[0].words;
         // const LengtSentence = Collection1.rounds.length - 1;
 
         console.log(Collection1.rounds[0].words);
-        let indexSelector = 1;
+        console.log(LengtSentence);
 
-        for (indexSelector; indexSelector < Collection1.rounds.length + 1; indexSelector++) {
+        for (let indexSelector = 1; indexSelector < Collection1.rounds.length + 1; indexSelector++) {
             const element = this.constructorSelectOption(
                 'option',
                 'PageOptions' + indexSelector,
@@ -114,7 +127,8 @@ export default class GamePage extends ConstructorView {
             );
             PageSelector.appendChild(element);
         }
-        let randomNumber = randomFunction(0, LengtSentence);
+        let randomNumber = randomArr(ArraySent);
+        // let randomNumber = randomFunction(0, ArraySent.length - 1);
         // let randomNumber: number;
         let textExampleRandom: number = Number(PageSelector.value);
 
@@ -122,7 +136,7 @@ export default class GamePage extends ConstructorView {
 
         // PageSelector.addEventListener('change', SelectPageSelector);
 
-        console.log(textExampleRandom + ' ' + randomNumber);
+        // console.log(textExampleRandom + ' ' + randomNumber);
 
         function SelectPageSelector() {
             if (textExampleRandom === randomNumber) {
@@ -146,7 +160,6 @@ export default class GamePage extends ConstructorView {
         const SentenceSplitRUS = Collection1.rounds[0].words[randomNumber].textExampleTranslate;
         console.log(SentenceSplitENEQ);
         
-        
         // // Добавляем в блок Пазла все предложения на нулевом уровне
         // for (let i = 0; i < Collection1.rounds[0].words.length; i++) {
         //     const split: string = Collection1.rounds[0].words[i].textExampleTranslate;
@@ -159,7 +172,7 @@ export default class GamePage extends ConstructorView {
         const SentTaskRus = this.constructorH1('h2', 'sentTaskRus', 'sentTaskRusID', String(SentenceSplitRUS));
         SentTaskDiv.appendChild(SentTaskRus);
 
-        console.log('random ' + randomFunction(0, LengtSentence)); //Number
+        // console.log('random ' + randomFunction(0, LengtSentence)); //Number
         console.log(SentenceSplitEN); //предложение
 
         SentenceSplitEN.forEach((world) => {
@@ -188,6 +201,9 @@ export default class GamePage extends ConstructorView {
 
         function ArrEq(SentenceSplitENEQ: string[], massClickSentenc: string[]) {
             if (SentenceSplitENEQ.toString() === massClickSentenc.toString()) {
+                ArrOk();
+                console.log(randomNumber);
+                console.log(ArraySent);
                 console.log('Массивы совпадают');
             } else {
                 console.log(massClickSentenc);
@@ -196,8 +212,17 @@ export default class GamePage extends ConstructorView {
         }
         console.log(massClickSentenc);
 
+        const ArrOk = () => {
+            ArraySent.splice(randomNumber, 1);
+            const BtnSentOk = this.constructorH1('button', 'btnSentsOk', 'btnSentsOkID', 'Завершить');
+            BTNSentenceDiv.append(BtnSentOk);
+            console.log(ArraySent);
+            BtnSentOk.addEventListener('click', () => randomArr(ArraySent));
+        };
         
 
         return Section;
     }
+
+
 }

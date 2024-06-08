@@ -4,25 +4,12 @@ import CollectionLevel1 from '../../../data/wordCollectionLevel1.json';
 import './game.css';
 
 export default class GamePage extends ConstructorView {
-    private Collection1 = CollectionLevel1;
-    private massClickSentenc: string[] = [];
-    private LengtSentence = this.Collection1.rounds[0].words.length - 1;
-    private ArraySent = Array.from({ length: this.LengtSentence + 1 }, (_, i) => i);
-    private randomNumber = this.randomArr(this.ArraySent);
-    private SentenceSplitENEQ = this.Collection1.rounds[0].words[this.randomNumber].textExample.split(' ');
-    private SentencePuzzleDiv!: HTMLElement;
-
     constructor() {
         super();
         this.render();
-        // if (this.SentencePuzzleDiv) {
-        //   const start = this.init();
-        // };
     }
 
     render() {
-        console.log(this.SentenceSplitENEQ);
-
         const Section = document.createElement('section');
         Section.className = 'sectionGame';
 
@@ -32,7 +19,7 @@ export default class GamePage extends ConstructorView {
         const LevelDiv = this.constructorForm('div', 'levelDiv');
         SettingDiv.appendChild(LevelDiv);
 
-        const LevelLable = this.constructorLable('label', 'levelLable', 'Level: ');
+        const LevelLable = this.constructorLable('lable', 'levelLable', 'Level: ');
         LevelDiv.appendChild(LevelLable);
         const LevelSelector = this.constructorDiv('select', 'levelSelector', 'levelSelectorID');
         LevelDiv.appendChild(LevelSelector);
@@ -55,10 +42,10 @@ export default class GamePage extends ConstructorView {
             );
             LevelSelector.appendChild(option);
         });
-
-        const PageLable = this.constructorLable('label', 'pageLable', 'Page: ');
+        const PageLable = this.constructorLable('lable', 'pageLable', 'Page: ');
         LevelDiv.appendChild(PageLable);
         const PageSelector = this.constructorDiv('select', 'pageSelector', 'pageSelectorID') as HTMLSelectElement;
+
         LevelDiv.appendChild(PageSelector);
 
         const SetBtnDiv = this.constructorForm('div', 'setBtnDiv');
@@ -81,14 +68,22 @@ export default class GamePage extends ConstructorView {
         const SentenceDiv = this.constructorDiv('div', 'sentenceDiv', 'sentenceDivID');
         Section.appendChild(SentenceDiv);
 
-        this.SentencePuzzleDiv = this.constructorDiv('div', 'sentPuzzleDiv', 'sentPuzzleDivID');
-        SentenceDiv.appendChild(this.SentencePuzzleDiv);
-        // console.log(this.SentencePuzzleDiv); // Проверка, что элемент создан
+        const SentencePuzzleDiv = this.constructorDiv('div', 'sentPuzzleDiv', 'sentPuzzleDivID');
+        SentenceDiv.appendChild(SentencePuzzleDiv);
+        // SentencePuzzleDiv.addEventListener('click', clickBTNWorlds);
 
         const BTNSentenceDiv = this.constructorDiv('div', 'BTNSentDiv', 'BTNSentDivID');
         SentenceDiv.appendChild(BTNSentenceDiv);
 
-        for (let indexSelector = 1; indexSelector < this.Collection1.rounds.length + 1; indexSelector++) {
+        const Collection1 = CollectionLevel1;
+        const LengtSentence = Collection1.rounds[0].words.length - 1;
+
+        const ArraySent = Array.from({ length: LengtSentence + 1 }, (_, i) => i);
+        console.log(ArraySent);
+        console.log(Collection1.rounds[0].words);
+        console.log(LengtSentence);
+
+        for (let indexSelector = 1; indexSelector < Collection1.rounds.length + 1; indexSelector++) {
             const element = this.constructorSelectOption(
                 'option',
                 'PageOptions' + indexSelector,
@@ -98,31 +93,35 @@ export default class GamePage extends ConstructorView {
             );
             PageSelector.appendChild(element);
         }
+        return Section;
+    }
+}
+
+class PlayGame extends ConstructorView {
+    private massClickSentenc: string[] = [];
+    private Collection1 = CollectionLevel1;
+    private LengtSentence = this.Collection1.rounds[0].words.length - 1;
+    private ArraySent = Array.from({ length: this.LengtSentence + 1 }, (_, i) => i);
+    private randomNumber = this.randomArr(this.ArraySent);
+    private SentenceSplitENEQ = this.Collection1.rounds[0].words[this.randomNumber].textExample.split(' ');
+
+    constructor() {
+        super();
         this.init();
-        return Section; // Добавляем Section в body
     }
 
-    init() {
-        if (this.SentencePuzzleDiv != null) {
-            // console.log(this.SentencePuzzleDiv);
-            const SentenceSplitEN = this.Collection1.rounds[0].words[this.randomNumber].textExample
-                .split(' ')
-                .sort(() => Math.random() - 0.7);
-            // console.log(SentenceSplitEN);
-
-            SentenceSplitEN.forEach((world) => {
-                const testWorlds = this.constructorH1(
-                    'button',
-                    'testWorldsClass' + world,
-                    'testWorldsID' + world,
-                    world
-                );
-                this.SentencePuzzleDiv.appendChild(testWorlds);
-
-                // console.log(testWorlds);
-                testWorlds.addEventListener('click', () => this.clickBTNWorlds(world));
-            });
-        }
+    private init() {
+        const SentenceSplitEN = this.Collection1.rounds[0].words[this.randomNumber].textExample
+            .split(' ')
+            .sort(() => Math.random() - 0.7);
+        SentenceSplitEN.forEach((world) => {
+            const testWorlds = this.constructorH1('button', 'testWorldsClass' + world, 'testWorldsID' + world, world);
+            const PDiv = document.getElementById('sentPuzzleDivID');
+            if (PDiv) {
+                PDiv.append(testWorlds);
+            }
+            testWorlds.addEventListener('click', () => this.clickBTNWorlds(world));
+        });
     }
 
     private randomArr(ArraySent: number[]) {
@@ -143,8 +142,11 @@ export default class GamePage extends ConstructorView {
     private ArrEq(SentenceSplitENEQ: string[], massClickSentenc: string[]) {
         if (SentenceSplitENEQ.toString() === massClickSentenc.toString()) {
             this.ArrOk();
+            // console.log(this.randomNumber);
+            // console.log(this.ArraySent);
+            // console.log('Массивы совпадают');
         } else {
-            console.log(massClickSentenc);
+            // console.log(massClickSentenc);
         }
     }
 
@@ -154,8 +156,6 @@ export default class GamePage extends ConstructorView {
         document.getElementById('BTNSentDivID')?.append(BtnSentOk);
         console.log(this.ArraySent);
         BtnSentOk.addEventListener('click', () => this.randomArr(this.ArraySent));
-        BtnSentOk.addEventListener('click', () => this.init());
     };
 }
-
-// const startPlayGame = new GamePage();
+const startPlayGame = new PlayGame();

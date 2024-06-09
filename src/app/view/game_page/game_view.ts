@@ -12,8 +12,11 @@ export default class GamePage extends ConstructorView {
     // private randomNumber: number;
     // private SentenceSplitENEQ = this.Collection1.rounds[0].words[this.randomNumber].textExample.split(' ');
     private SentenceSplitENEQ!: string[];
+    private SentenceSplitEN!: string;
     private SentencePuzzleDiv!: HTMLElement;
+    private sentTaskHelp!: HTMLElement;
     private DivInPuzzle!: HTMLElement;
+    private SentTaskDiv!: HTMLElement;
 
     constructor() {
         super();
@@ -75,8 +78,8 @@ export default class GamePage extends ConstructorView {
         const SpeakTaskDiv = this.constructorDiv('div', 'speakTaskDiv', 'speakTaskDivID');
         TaskDiv.appendChild(SpeakTaskDiv);
 
-        const SentTaskDiv = this.constructorDiv('div', 'sentTaskDiv', 'sentTaskDivID');
-        TaskDiv.appendChild(SentTaskDiv);
+        this.SentTaskDiv = this.constructorDiv('div', 'sentTaskDiv', 'sentTaskDivID');
+        TaskDiv.appendChild(this.SentTaskDiv);
 
         const PuzzleDiv = this.constructorDiv('div', 'puzzleDiv', 'puzzleDivID');
         Section.appendChild(PuzzleDiv);
@@ -94,8 +97,13 @@ export default class GamePage extends ConstructorView {
         const BtnSentOk = this.constructorH1('button', 'btnSentsOk none', 'btnSentsOkID', 'Завершить');
         BTNSentenceDiv.append(BtnSentOk);
 
-        this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + this.randomNumber);
-        PuzzleDiv.appendChild(this.DivInPuzzle);
+        // this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + this.randomNumber);
+        // PuzzleDiv.appendChild(this.DivInPuzzle);
+
+        for (let i = 0; i < this.ArraySent.length; i++) {
+            const element = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + i);
+            PuzzleDiv.appendChild(element);
+        }
 
         // BtnSentOk.addEventListener('click', () => this.init());
         // BtnSentOk.addEventListener('click', () => this.ArrOk());
@@ -109,6 +117,7 @@ export default class GamePage extends ConstructorView {
                 String(indexSelector)
             );
             PageSelector.appendChild(element);
+            // console.log(this.ArraySent);
         }
         this.init();
         return Section; // Добавляем Section в body
@@ -117,6 +126,9 @@ export default class GamePage extends ConstructorView {
     init() {
         if (this.SentencePuzzleDiv != null) {
             // console.log(this.SentencePuzzleDiv);
+            this.SentenceSplitEN = this.Collection1.rounds[0].words[this.randomNumber].textExample;
+            this.sentTaskHelp = this.constructorLable('h1', 'sentTaskHelp', this.SentenceSplitEN);
+            this.SentTaskDiv.appendChild(this.sentTaskHelp);
             this.SentenceSplitENEQ = this.Collection1.rounds[0].words[this.randomNumber].textExample.split(' ');
             const SentenceSplitEN = this.Collection1.rounds[0].words[this.randomNumber].textExample
                 .split(' ')
@@ -166,19 +178,21 @@ export default class GamePage extends ConstructorView {
             // this.randomArr(this.ArraySent);
             document.getElementById('btnSentsOkID')?.addEventListener('click', () => this.ArrOk());
             // this.ArrOk();
+            this.ArraySent.splice(this.randomNumber, 1);
         } else {
             console.log(massClickSentenc);
         }
     }
 
     private ArrOk = () => {
-        this.ArraySent.splice(this.randomNumber, 1);
+        
         document.getElementById('btnSentsOkID')?.classList.add('none');
         console.log(this.ArraySent);
         console.log(this.massClickSentenc);
         this.randomArr(this.ArraySent);
         const SentDiv = document.getElementById('sentPuzzleDivID') as HTMLElement;
         SentDiv.innerHTML = '';
+        this.SentTaskDiv.innerHTML = '';
         this.init();
         // BtnSentOk.addEventListener('click', () => this.randomArr(this.ArraySent));
         // BtnSentOk.addEventListener('click', () => this.init());

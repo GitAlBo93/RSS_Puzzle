@@ -13,6 +13,7 @@ export default class GamePage extends ConstructorView {
     // private SentenceSplitENEQ = this.Collection1.rounds[0].words[this.randomNumber].textExample.split(' ');
     private SentenceSplitENEQ!: string[];
     private SentencePuzzleDiv!: HTMLElement;
+    private DivInPuzzle!: HTMLElement;
 
     constructor() {
         super();
@@ -93,6 +94,9 @@ export default class GamePage extends ConstructorView {
         const BtnSentOk = this.constructorH1('button', 'btnSentsOk none', 'btnSentsOkID', 'Завершить');
         BTNSentenceDiv.append(BtnSentOk);
 
+        this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + this.randomNumber);
+        PuzzleDiv.appendChild(this.DivInPuzzle);
+
         // BtnSentOk.addEventListener('click', () => this.init());
         // BtnSentOk.addEventListener('click', () => this.ArrOk());
 
@@ -138,6 +142,8 @@ export default class GamePage extends ConstructorView {
         const randomElement = Math.floor(Math.random() * ArraySent.length);
         console.log(randomElement);
         this.randomNumber = randomElement;
+        this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + this.randomNumber);
+        document.getElementById('puzzleDivID')?.appendChild(this.DivInPuzzle);
         return randomElement;
     }
 
@@ -146,7 +152,10 @@ export default class GamePage extends ConstructorView {
         console.log(this.massClickSentenc);
         document.getElementById('testWorldsID' + world)?.classList.add('none');
         const PuzzleSentRus = this.constructorH1('button', 'puzzleSplit', 'puzzleSplit' + world, world);
-        document.getElementById('puzzleDivID')?.appendChild(PuzzleSentRus);
+        document.getElementById('divInPuzzleID' + this.randomNumber)?.appendChild(PuzzleSentRus);
+        // document.getElementById('puzzleDivID')?.appendChild(PuzzleSentRus);
+        
+        
         this.ArrEq(this.SentenceSplitENEQ, this.massClickSentenc);
     };
 

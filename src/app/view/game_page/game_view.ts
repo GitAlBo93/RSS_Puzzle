@@ -9,7 +9,9 @@ export default class GamePage extends ConstructorView {
     private LengtSentence = this.Collection1.rounds[0].words.length - 1;
     private ArraySent = Array.from({ length: this.LengtSentence + 1 }, (_, i) => i);
     private randomNumber = this.randomArr(this.ArraySent);
-    private SentenceSplitENEQ = this.Collection1.rounds[0].words[this.randomNumber].textExample.split(' ');
+    // private randomNumber: number;
+    // private SentenceSplitENEQ = this.Collection1.rounds[0].words[this.randomNumber].textExample.split(' ');
+    private SentenceSplitENEQ!: string[];
     private SentencePuzzleDiv!: HTMLElement;
 
     constructor() {
@@ -88,6 +90,12 @@ export default class GamePage extends ConstructorView {
         const BTNSentenceDiv = this.constructorDiv('div', 'BTNSentDiv', 'BTNSentDivID');
         SentenceDiv.appendChild(BTNSentenceDiv);
 
+        const BtnSentOk = this.constructorH1('button', 'btnSentsOk none', 'btnSentsOkID', 'Завершить');
+        BTNSentenceDiv.append(BtnSentOk);
+
+        // BtnSentOk.addEventListener('click', () => this.init());
+        // BtnSentOk.addEventListener('click', () => this.ArrOk());
+
         for (let indexSelector = 1; indexSelector < this.Collection1.rounds.length + 1; indexSelector++) {
             const element = this.constructorSelectOption(
                 'option',
@@ -105,6 +113,7 @@ export default class GamePage extends ConstructorView {
     init() {
         if (this.SentencePuzzleDiv != null) {
             // console.log(this.SentencePuzzleDiv);
+            this.SentenceSplitENEQ = this.Collection1.rounds[0].words[this.randomNumber].textExample.split(' ');
             const SentenceSplitEN = this.Collection1.rounds[0].words[this.randomNumber].textExample
                 .split(' ')
                 .sort(() => Math.random() - 0.7);
@@ -128,6 +137,7 @@ export default class GamePage extends ConstructorView {
     private randomArr(ArraySent: number[]) {
         const randomElement = Math.floor(Math.random() * ArraySent.length);
         console.log(randomElement);
+        this.randomNumber = randomElement;
         return randomElement;
     }
 
@@ -142,7 +152,11 @@ export default class GamePage extends ConstructorView {
 
     private ArrEq(SentenceSplitENEQ: string[], massClickSentenc: string[]) {
         if (SentenceSplitENEQ.toString() === massClickSentenc.toString()) {
-            this.ArrOk();
+            document.getElementById('btnSentsOkID')?.classList.toggle('none');
+            massClickSentenc.length = 0;
+            // this.randomArr(this.ArraySent);
+            document.getElementById('btnSentsOkID')?.addEventListener('click', () => this.ArrOk());
+            // this.ArrOk();
         } else {
             console.log(massClickSentenc);
         }
@@ -150,11 +164,15 @@ export default class GamePage extends ConstructorView {
 
     private ArrOk = () => {
         this.ArraySent.splice(this.randomNumber, 1);
-        const BtnSentOk = this.constructorH1('button', 'btnSentsOk', 'btnSentsOkID', 'Завершить');
-        document.getElementById('BTNSentDivID')?.append(BtnSentOk);
+        document.getElementById('btnSentsOkID')?.classList.add('none');
         console.log(this.ArraySent);
-        BtnSentOk.addEventListener('click', () => this.randomArr(this.ArraySent));
-        BtnSentOk.addEventListener('click', () => this.init());
+        console.log(this.massClickSentenc);
+        this.randomArr(this.ArraySent);
+        const SentDiv = document.getElementById('sentPuzzleDivID') as HTMLElement;
+        SentDiv.innerHTML = '';
+        this.init();
+        // BtnSentOk.addEventListener('click', () => this.randomArr(this.ArraySent));
+        // BtnSentOk.addEventListener('click', () => this.init());
     };
 }
 

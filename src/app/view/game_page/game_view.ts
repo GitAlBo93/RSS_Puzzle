@@ -20,7 +20,7 @@ export default class GamePage extends ConstructorView {
 
     constructor() {
         super();
-        this.render();
+        // this.render();
         // if (this.SentencePuzzleDiv) {
         //   const start = this.init();
         // };
@@ -152,22 +152,25 @@ export default class GamePage extends ConstructorView {
 
     private randomArr(ArraySent: number[]) {
         const randomElement = Math.floor(Math.random() * ArraySent.length);
+        const arrElem = this.ArraySent[randomElement];
+        // console.log(randomElement);
+        this.randomNumber = arrElem;
         console.log(randomElement);
-        this.randomNumber = randomElement;
+        console.log(this.randomNumber);
+        console.log(this.ArraySent);
+        console.log(ArraySent);
         this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + this.randomNumber);
         document.getElementById('puzzleDivID')?.appendChild(this.DivInPuzzle);
-        return randomElement;
+        return arrElem;
     }
 
     private clickBTNWorlds = (world: string) => {
         this.massClickSentenc.push(world);
-        console.log(this.massClickSentenc);
+        // console.log(this.massClickSentenc);
         document.getElementById('testWorldsID' + world)?.classList.add('none');
         const PuzzleSentRus = this.constructorH1('button', 'puzzleSplit', 'puzzleSplit' + world, world);
         document.getElementById('divInPuzzleID' + this.randomNumber)?.appendChild(PuzzleSentRus);
         // document.getElementById('puzzleDivID')?.appendChild(PuzzleSentRus);
-        
-        
         this.ArrEq(this.SentenceSplitENEQ, this.massClickSentenc);
     };
 
@@ -178,14 +181,18 @@ export default class GamePage extends ConstructorView {
             // this.randomArr(this.ArraySent);
             document.getElementById('btnSentsOkID')?.addEventListener('click', () => this.ArrOk());
             // this.ArrOk();
+
+
+
+
+            // Косяк Тут
             this.ArraySent.splice(this.randomNumber, 1);
         } else {
-            console.log(massClickSentenc);
+            // console.log(massClickSentenc);
         }
     }
 
     private ArrOk = () => {
-        
         document.getElementById('btnSentsOkID')?.classList.add('none');
         console.log(this.ArraySent);
         console.log(this.massClickSentenc);

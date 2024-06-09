@@ -17,7 +17,7 @@ export default class GamePage extends ConstructorView {
     private sentTaskHelp!: HTMLElement;
     private DivInPuzzle!: HTMLElement;
     private SentTaskDiv!: HTMLElement;
-
+    private ElemMassSent!: number;
     constructor() {
         super();
         // this.render();
@@ -126,11 +126,11 @@ export default class GamePage extends ConstructorView {
     init() {
         if (this.SentencePuzzleDiv != null) {
             // console.log(this.SentencePuzzleDiv);
-            this.SentenceSplitEN = this.Collection1.rounds[0].words[this.randomNumber].textExample;
+            this.SentenceSplitEN = this.Collection1.rounds[0].words[this.ElemMassSent].textExample;
             this.sentTaskHelp = this.constructorLable('h1', 'sentTaskHelp', this.SentenceSplitEN);
             this.SentTaskDiv.appendChild(this.sentTaskHelp);
-            this.SentenceSplitENEQ = this.Collection1.rounds[0].words[this.randomNumber].textExample.split(' ');
-            const SentenceSplitEN = this.Collection1.rounds[0].words[this.randomNumber].textExample
+            this.SentenceSplitENEQ = this.Collection1.rounds[0].words[this.ElemMassSent].textExample.split(' ');
+            const SentenceSplitEN = this.Collection1.rounds[0].words[this.ElemMassSent].textExample
                 .split(' ')
                 .sort(() => Math.random() - 0.7);
             // console.log(SentenceSplitEN);
@@ -152,16 +152,16 @@ export default class GamePage extends ConstructorView {
 
     private randomArr(ArraySent: number[]) {
         const randomElement = Math.floor(Math.random() * ArraySent.length);
-        const arrElem = this.ArraySent[randomElement];
+        this.ElemMassSent = ArraySent[randomElement];
         // console.log(randomElement);
-        this.randomNumber = arrElem;
+        this.randomNumber = randomElement;
         console.log(randomElement);
         console.log(this.randomNumber);
         console.log(this.ArraySent);
         console.log(ArraySent);
-        this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + this.randomNumber);
+        this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + randomElement);
         document.getElementById('puzzleDivID')?.appendChild(this.DivInPuzzle);
-        return arrElem;
+        return randomElement;
     }
 
     private clickBTNWorlds = (world: string) => {
@@ -169,7 +169,7 @@ export default class GamePage extends ConstructorView {
         // console.log(this.massClickSentenc);
         document.getElementById('testWorldsID' + world)?.classList.add('none');
         const PuzzleSentRus = this.constructorH1('button', 'puzzleSplit', 'puzzleSplit' + world, world);
-        document.getElementById('divInPuzzleID' + this.randomNumber)?.appendChild(PuzzleSentRus);
+        document.getElementById('divInPuzzleID' + this.ElemMassSent)?.appendChild(PuzzleSentRus);
         // document.getElementById('puzzleDivID')?.appendChild(PuzzleSentRus);
         this.ArrEq(this.SentenceSplitENEQ, this.massClickSentenc);
     };
@@ -181,10 +181,6 @@ export default class GamePage extends ConstructorView {
             // this.randomArr(this.ArraySent);
             document.getElementById('btnSentsOkID')?.addEventListener('click', () => this.ArrOk());
             // this.ArrOk();
-
-
-
-
             // Косяк Тут
             this.ArraySent.splice(this.randomNumber, 1);
         } else {

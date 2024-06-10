@@ -9,6 +9,7 @@ export default class GamePage extends ConstructorView {
     private LengtSentence = this.Collection1.rounds[0].words.length - 1;
     private ArraySent = Array.from({ length: this.LengtSentence + 1 }, (_, i) => i);
     private randomNumber = this.randomArr(this.ArraySent);
+    // private randomNumber!: number;
     // private randomNumber: number;
     // private SentenceSplitENEQ = this.Collection1.rounds[0].words[this.randomNumber].textExample.split(' ');
     private SentenceSplitENEQ!: string[];
@@ -96,14 +97,15 @@ export default class GamePage extends ConstructorView {
 
         const BtnSentOk = this.constructorH1('button', 'btnSentsOk none', 'btnSentsOkID', 'Завершить');
         BTNSentenceDiv.append(BtnSentOk);
+        BtnSentOk.addEventListener('click', () => this.ArrOk());
 
-        // this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + this.randomNumber);
-        // PuzzleDiv.appendChild(this.DivInPuzzle);
+        this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + this.ElemMassSent);
+        PuzzleDiv.appendChild(this.DivInPuzzle);
 
-        for (let i = 0; i < this.ArraySent.length; i++) {
-            const element = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + i);
-            PuzzleDiv.appendChild(element);
-        }
+        // for (let i = 0; i < this.ArraySent.length; i++) {
+        //     const element = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + i);
+        //     PuzzleDiv.appendChild(element);
+        // }
 
         // BtnSentOk.addEventListener('click', () => this.init());
         // BtnSentOk.addEventListener('click', () => this.ArrOk());
@@ -136,12 +138,7 @@ export default class GamePage extends ConstructorView {
             // console.log(SentenceSplitEN);
 
             SentenceSplitEN.forEach((world) => {
-                const testWorlds = this.constructorH1(
-                    'button',
-                    'testWorldsClass' + world,
-                    'testWorldsID' + world,
-                    world
-                );
+                const testWorlds = this.constructorH1('button', 'testWorldsClass', 'testWorldsID' + world, world);
                 this.SentencePuzzleDiv.appendChild(testWorlds);
 
                 // console.log(testWorlds);
@@ -156,10 +153,10 @@ export default class GamePage extends ConstructorView {
         // console.log(randomElement);
         this.randomNumber = randomElement;
         console.log(randomElement);
-        console.log(this.randomNumber);
+        // console.log(this.randomNumber);
         console.log(this.ArraySent);
         console.log(ArraySent);
-        this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + randomElement);
+        this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + this.ElemMassSent);
         document.getElementById('puzzleDivID')?.appendChild(this.DivInPuzzle);
         return randomElement;
     }
@@ -170,6 +167,7 @@ export default class GamePage extends ConstructorView {
         document.getElementById('testWorldsID' + world)?.classList.add('none');
         const PuzzleSentRus = this.constructorH1('button', 'puzzleSplit', 'puzzleSplit' + world, world);
         document.getElementById('divInPuzzleID' + this.ElemMassSent)?.appendChild(PuzzleSentRus);
+        // document.getElementById('divInPuzzleID' + this.randomNumber)?.appendChild(PuzzleSentRus);
         // document.getElementById('puzzleDivID')?.appendChild(PuzzleSentRus);
         this.ArrEq(this.SentenceSplitENEQ, this.massClickSentenc);
     };
@@ -179,7 +177,7 @@ export default class GamePage extends ConstructorView {
             document.getElementById('btnSentsOkID')?.classList.toggle('none');
             massClickSentenc.length = 0;
             // this.randomArr(this.ArraySent);
-            document.getElementById('btnSentsOkID')?.addEventListener('click', () => this.ArrOk());
+            // document.getElementById('btnSentsOkID')?.addEventListener('click', () => this.ArrOk());
             // this.ArrOk();
             // Косяк Тут
             this.ArraySent.splice(this.randomNumber, 1);

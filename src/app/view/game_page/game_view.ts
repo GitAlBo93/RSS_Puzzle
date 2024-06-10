@@ -140,8 +140,6 @@ export default class GamePage extends ConstructorView {
             SentenceSplitEN.forEach((world) => {
                 const testWorlds = this.constructorH1('button', 'testWorldsClass', 'testWorldsID' + world, world);
                 this.SentencePuzzleDiv.appendChild(testWorlds);
-
-                // console.log(testWorlds);
                 testWorlds.addEventListener('click', () => this.clickBTNWorlds(world));
             });
         }
@@ -167,9 +165,23 @@ export default class GamePage extends ConstructorView {
         document.getElementById('testWorldsID' + world)?.classList.add('none');
         const PuzzleSentRus = this.constructorH1('button', 'puzzleSplit', 'puzzleSplit' + world, world);
         document.getElementById('divInPuzzleID' + this.ElemMassSent)?.appendChild(PuzzleSentRus);
+        PuzzleSentRus.addEventListener('click', () => this.removeBTNWorlds(world));
         // document.getElementById('divInPuzzleID' + this.randomNumber)?.appendChild(PuzzleSentRus);
         // document.getElementById('puzzleDivID')?.appendChild(PuzzleSentRus);
         this.ArrEq(this.SentenceSplitENEQ, this.massClickSentenc);
+    };
+
+    private removeBTNWorlds = (world: string) => {
+        document.getElementById('puzzleSplit' + world)?.remove();
+        document.getElementById('testWorldsID' + world)?.classList.toggle('none');
+        this.findElem(world);
+    };
+
+    private findElem = (world: string) => {
+        const finding = this.massClickSentenc.indexOf(world) != -1;
+        if (finding === true) {
+            this.massClickSentenc.splice(this.massClickSentenc.indexOf(world), 1);
+        }
     };
 
     private ArrEq(SentenceSplitENEQ: string[], massClickSentenc: string[]) {
@@ -179,7 +191,6 @@ export default class GamePage extends ConstructorView {
             // this.randomArr(this.ArraySent);
             // document.getElementById('btnSentsOkID')?.addEventListener('click', () => this.ArrOk());
             // this.ArrOk();
-            // Косяк Тут
             this.ArraySent.splice(this.randomNumber, 1);
         } else {
             // console.log(massClickSentenc);

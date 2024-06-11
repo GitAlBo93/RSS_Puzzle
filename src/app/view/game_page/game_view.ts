@@ -4,9 +4,10 @@ import CollectionLevel1 from '../../../data/wordCollectionLevel1.json';
 import './game.css';
 
 export default class GamePage extends ConstructorView {
+    private roundPage: number = 0;
     private Collection1 = CollectionLevel1;
     private massClickSentenc: string[] = [];
-    private LengtSentence = this.Collection1.rounds[0].words.length - 1;
+    private LengtSentence = this.Collection1.rounds[this.roundPage].words.length - 1;
     private ArraySent = Array.from({ length: this.LengtSentence + 1 }, (_, i) => i);
     private randomNumber = this.randomArr(this.ArraySent);
     // private randomNumber!: number;
@@ -121,18 +122,34 @@ export default class GamePage extends ConstructorView {
             PageSelector.appendChild(element);
             // console.log(this.ArraySent);
         }
+        this.DivInPuzzle.ondragover = this.allowDrop;
+        this.DivInPuzzle.ondrop = this.drop;
+
         this.init();
         return Section; // Добавляем Section в body
+    }
+
+    private allowDrop(event: any) {
+        event.preventDefault();
+    }
+
+    private drag(event: any) {
+        event.dataTransfer.setData('id', event.target.id);
+    }
+
+    private drop(event: any) {
+        const itemID = event.dataTransfer.getData('id');
+        console.log(itemID);
     }
 
     init() {
         if (this.SentencePuzzleDiv != null) {
             // console.log(this.SentencePuzzleDiv);
-            this.SentenceSplitEN = this.Collection1.rounds[0].words[this.ElemMassSent].textExample;
+            this.SentenceSplitEN = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExample;
             this.sentTaskHelp = this.constructorLable('h1', 'sentTaskHelp', this.SentenceSplitEN);
             this.SentTaskDiv.appendChild(this.sentTaskHelp);
-            this.SentenceSplitENEQ = this.Collection1.rounds[0].words[this.ElemMassSent].textExample.split(' ');
-            const SentenceSplitEN = this.Collection1.rounds[0].words[this.ElemMassSent].textExample
+            this.SentenceSplitENEQ = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExample.split(' ');
+            const SentenceSplitEN = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExample
                 .split(' ')
                 .sort(() => Math.random() - 0.7);
             // console.log(SentenceSplitEN);
@@ -141,6 +158,8 @@ export default class GamePage extends ConstructorView {
                 const testWorlds = this.constructorH1('button', 'testWorldsClass', 'testWorldsID' + world, world);
                 this.SentencePuzzleDiv.appendChild(testWorlds);
                 testWorlds.addEventListener('click', () => this.clickBTNWorlds(world));
+                
+                testWorlds.ondragstart = this.drag;
             });
         }
     }
@@ -163,6 +182,7 @@ export default class GamePage extends ConstructorView {
         this.massClickSentenc.push(world);
         // console.log(this.massClickSentenc);
         document.getElementById('testWorldsID' + world)?.classList.add('none');
+        // document.getElementById('testWorldsID' + world)?.remove();
         const PuzzleSentRus = this.constructorH1('button', 'puzzleSplit', 'puzzleSplit' + world, world);
         document.getElementById('divInPuzzleID' + this.ElemMassSent)?.appendChild(PuzzleSentRus);
         PuzzleSentRus.addEventListener('click', () => this.removeBTNWorlds(world));
@@ -174,6 +194,8 @@ export default class GamePage extends ConstructorView {
     private removeBTNWorlds = (world: string) => {
         document.getElementById('puzzleSplit' + world)?.remove();
         document.getElementById('testWorldsID' + world)?.classList.toggle('none');
+        // const testWorlds = this.constructorH1('button', 'testWorldsClass', 'testWorldsID' + world, world);
+        // document.getElementById('sentPuzzleDivID')?.appendChild(testWorlds);
         this.findElem(world);
     };
 
@@ -192,6 +214,7 @@ export default class GamePage extends ConstructorView {
             // document.getElementById('btnSentsOkID')?.addEventListener('click', () => this.ArrOk());
             // this.ArrOk();
             this.ArraySent.splice(this.randomNumber, 1);
+            this.roundsOff(this.ArraySent);
         } else {
             // console.log(massClickSentenc);
         }
@@ -206,9 +229,32 @@ export default class GamePage extends ConstructorView {
         SentDiv.innerHTML = '';
         this.SentTaskDiv.innerHTML = '';
         this.init();
+
+        const BTNNextLevel = document.getElementById('btnNextLevelID') as HTMLElement;
+        if (BTNNextLevel!) {
+            BTNNextLevel.remove();
+        }
         // BtnSentOk.addEventListener('click', () => this.randomArr(this.ArraySent));
         // BtnSentOk.addEventListener('click', () => this.init());
     };
+
+    private roundsOff(ArraySent: number[]) {
+        if (ArraySent.length === 0) {
+            const BTNNextLevel = this.constructorH1('button', 'btnNextLevel', 'btnNextLevelID', 'Следующий Уровень');
+            document.getElementById('BTNSentDivID')?.appendChild(BTNNextLevel);
+            const PuzzleDiv = document.getElementById('puzzleDivID') as HTMLElement;
+            PuzzleDiv.innerHTML = '';
+            BTNNextLevel.addEventListener('click', () => this.ArrOk());
+            // BTNNextLevel.addEventListener('click', () => this.ArrOk());
+            this.ArraySent = Array.from({ length: this.LengtSentence + 1 }, (_, i) => i);
+            if (this.roundPage < 44) {
+                this.roundPage = this.roundPage + 1;
+            } else {
+                const BTNNextLevel = this.constructorH1('button', 'btnNextLevel', 'btnNextLevelID', 'Следующий Уровень');
+                document.getElementById('BTNSentDivID')?.appendChild(BTNNextLevel);
+            }
+        }
+    }
 }
 
 // const startPlayGame = new GamePage();

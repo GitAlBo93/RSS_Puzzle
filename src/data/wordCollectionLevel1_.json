@@ -11,6 +11,22 @@
       },
       "words": [
         {
+          "audioExample": "files/01_0001_example.mp3",
+          "textExample": "The students agree they have too much homework",
+          "textExampleTranslate": "Студенты согласны, что у них слишком много домашней работы",
+          "id": 1,
+          "word": "agree",
+          "wordTranslate": "согласна"
+        },
+        {
+          "audioExample": "files/01_0003_example.mp3",
+          "textExample": "They arrived at school at 7 a.m",
+          "textExampleTranslate": "Они прибыли в школу в 7 часов утра",
+          "id": 3,
+          "word": "arrive",
+          "wordTranslate": "прибыть"
+        },
+        {
           "audioExample": "files/01_0004_example.mp3",
           "textExample": "Is your birthday in August?",
           "textExampleTranslate": "У тебя день рождения в августе?",
@@ -41,6 +57,38 @@
           "id": 7,
           "word": "camera",
           "wordTranslate": "камера"
+        },
+        {
+          "audioExample": "files/01_0008_example.mp3",
+          "textExample": "The capital of the United States is Washington, D.C",
+          "textExampleTranslate": "Столица Соединенных Штатов - Вашингтон, округ Колумбия",
+          "id": 8,
+          "word": "capital",
+          "wordTranslate": "столица"
+        },
+        {
+          "audioExample": "files/01_0009_example.mp3",
+          "textExample": "Did you catch the ball during the baseball game?",
+          "textExampleTranslate": "Вы поймали мяч во время игры в бейсбол?",
+          "id": 9,
+          "word": "catch",
+          "wordTranslate": "поймать"
+        },
+        {
+          "audioExample": "files/01_0010_example.mp3",
+          "textExample": "People feed ducks at the lake",
+          "textExampleTranslate": "Люди кормят уток у озера",
+          "id": 10,
+          "word": "duck",
+          "wordTranslate": "утка"
+        },
+        {
+          "audioExample": "files/01_0011_example.mp3",
+          "textExample": "The woman enjoys riding her bicycle",
+          "textExampleTranslate": "Женщина любит кататься на велосипеде",
+          "id": 11,
+          "word": "enjoy",
+          "wordTranslate": "наслаждаться"
         }
       ]
     },
@@ -54,6 +102,14 @@
         "year": "1888"
       },
       "words": [
+        {
+          "audioExample": "files/01_0012_example.mp3",
+          "textExample": "I will invite my friends to my birthday party",
+          "textExampleTranslate": "Я приглашаю своих друзей на мой день рождения",
+          "id": 12,
+          "word": "invite",
+          "wordTranslate": "пригласить"
+        },
         {
           "audioExample": "files/01_0013_example.mp3",
           "textExample": "I love my family very much",
@@ -85,6 +141,46 @@
           "id": 16,
           "word": "typical",
           "wordTranslate": "типичный"
+        },
+        {
+          "audioExample": "files/01_0017_example.mp3",
+          "textExample": "She wants to visit her grandmother",
+          "textExampleTranslate": "Она хочет навестить свою бабушку",
+          "id": 17,
+          "word": "visit",
+          "wordTranslate": "посещение"
+        },
+        {
+          "audioExample": "files/01_0018_example.mp3",
+          "textExample": "Today’s weather is rainy and cloudy",
+          "textExampleTranslate": "Сегодня погода дождливая и облачная",
+          "id": 18,
+          "word": "weather",
+          "wordTranslate": "погода"
+        },
+        {
+          "audioExample": "files/01_0019_example.mp3",
+          "textExample": "What are you doing next week?",
+          "textExampleTranslate": "Что ты делаешь на следующей неделе?",
+          "id": 19,
+          "word": "week",
+          "wordTranslate": "неделя"
+        },
+        {
+          "audioExample": "files/01_0020_example.mp3",
+          "textExample": "The store carried both red and white wine",
+          "textExampleTranslate": "В магазине было красное и белое вино",
+          "id": 20,
+          "word": "wine",
+          "wordTranslate": "вино"
+        },
+        {
+          "audioExample": "files/02_0021_example.mp3",
+          "textExample": "Riding in the rough water was an adventure",
+          "textExampleTranslate": "Езда в бурной воде была приключением",
+          "id": 21,
+          "word": "adventure",
+          "wordTranslate": "приключение"
         }
       ]
     },

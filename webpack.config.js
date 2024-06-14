@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const DotenvWebpackPlugin = require('dotenv-webpack');
 // const CopyPlugin = require('copy-webpack-plugin');
 //const ESLintPlugin = require('eslint-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.ts'),
@@ -24,20 +25,20 @@ const baseConfig = {
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
-            // {
-            //     test: /\.(png|jpg|gif)$/,
-            //     use: [
-            //         {
-            //             loader: 'file-loader',
-            //             options: {
-            //                 name: '[path][name].[ext]',
-            //                 context: 'src', // Base directory (absolute path) for the context.
-            //                 outputPath: 'imag/', // Output directory for images
-            //                 publicPath: 'imag/', // Public URL to use in the browser
-            //             }
-            //         }
-            //     ]
-            // },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[ext]',
+                            // context: 'src', // Base directory (absolute path) for the context.
+                            outputPath: 'imag/', // Output directory for images
+                            // publicPath: 'imag/', // Public URL to use in the browser
+                        },
+                    },
+                ],
+            },
         ],
     },
     resolve: {
@@ -59,6 +60,11 @@ const baseConfig = {
         //       { from: 'public/**/*' },
         //     ],
         //   }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'src/img', to: 'images' },
+            ],
+        }),
     ],
 };
 

@@ -1,7 +1,10 @@
-import { url } from 'inspector';
+// import { url } from 'inspector';
+// import Image from '../../../img/loud_on.png';
 
 export default class ConstructorView {
-    constructor() {}
+    constructor() {
+        // const images: string[] = importAll(require.context('./img', true, /\.(png|jpe?g|gif|svg)$/));
+    }
 
     constructorLable(ELEM: string, CLASSES: string, TEXT: string) {
         const constLable = document.createElement(ELEM);
@@ -49,11 +52,18 @@ export default class ConstructorView {
         return consSelect;
     }
 
-    constructorIMG() {
-        const consIMG = document.createElement('img');
-        consIMG.src = './src/img/body_img.jpg';
-        consIMG.alt = 'Подсказка "Голосом"';
+    // importAll(r: __WebpackModuleApi.RequireContext): string[] {
+    //     return r.keys().map(r);
+    // }
 
+    
+
+    constructorIMG(ImageURL: string) {
+        const consIMG = document.createElement('img');
+        consIMG.src = ImageURL;
+        consIMG.alt = 'Подсказка "Голосом"';
+        consIMG.style.width = '100px';
+        consIMG.style.height = '100px';
         return consIMG;
     }
 }

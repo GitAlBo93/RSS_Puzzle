@@ -1,6 +1,6 @@
 body{
-    /* background-image: url('/src/images/body_img.jpg'); */
-    background-image: url('./img/body_img.jpg');
+    background-image: url('../src/images/body_img.jpg');
+    /* background-image: url('./img/body_img.jpg'); */
     background-repeat: no-repeat;
     background-size: cover;
     justify-content: center;

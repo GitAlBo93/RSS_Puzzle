@@ -1,5 +1,6 @@
 import ConstructorView from '../constructor/constructor_view';
 import CollectionLevel1 from '../../../data/wordCollectionLevel1.json';
+import myImag from '../../../img/loud_on.png';
 
 import './game.css';
 
@@ -61,7 +62,7 @@ export default class GamePage extends ConstructorView {
         // PageSelector.appendChild(PageOptions3);
 
         const SetBtnDiv = this.constructorForm('div', 'setBtnDiv');
-        const ImgHelp = this.constructorIMG();
+        const ImgHelp = this.constructorIMG(myImag);
         SettingDiv.appendChild(SetBtnDiv);
         SetBtnDiv.appendChild(ImgHelp);
 

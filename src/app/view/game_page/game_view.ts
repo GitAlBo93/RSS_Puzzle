@@ -1,6 +1,5 @@
 import ConstructorView from '../constructor/constructor_view';
 import CollectionLevel1 from '../../../data/wordCollectionLevel1.json';
-
 import './game.css';
 
 export default class GamePage extends ConstructorView {
@@ -20,6 +19,8 @@ export default class GamePage extends ConstructorView {
     private DivInPuzzle!: HTMLElement;
     private SentTaskDiv!: HTMLElement;
     private ElemMassSent!: number;
+    // private myImages: string = require ('../../../img/loud_on.png');
+    private myImages: string = 'images/loud_on.png';
     constructor() {
         super();
         // this.render();
@@ -70,7 +71,7 @@ export default class GamePage extends ConstructorView {
         LevelDiv.appendChild(PageSelector);
 
         const SetBtnDiv = this.constructorForm('div', 'setBtnDiv');
-        const ImgHelp = this.constructorIMG();
+        const ImgHelp = this.constructorIMG(this.myImages);
         SettingDiv.appendChild(SetBtnDiv);
         SetBtnDiv.appendChild(ImgHelp);
 

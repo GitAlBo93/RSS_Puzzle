@@ -7,6 +7,12 @@
     min-height: 40vh;
 }
 
+.settingDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .sentPuzzleDiv{
     display: flex;
     flex-direction: row;
@@ -36,3 +42,12 @@
     display: none;
 }
 
+.IMG_Help{
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+
+    &:hover {
+        transform: scale(1.2);
+      }
+}

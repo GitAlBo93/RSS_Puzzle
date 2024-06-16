@@ -20,7 +20,9 @@ export default class GamePage extends ConstructorView {
     private SentTaskDiv!: HTMLElement;
     private ElemMassSent!: number;
     // private myImages: string = require ('../../../img/loud_on.png');
-    private myImages: string = 'images/loud_on.png';
+    private SpeckHelpImages: string = 'images/loud_on.png';
+    private SentHelpImages: string = 'images/translator_on.png';
+    private QuestHelpImages : string = 'images/question_on.png';
     constructor() {
         super();
         // this.render();
@@ -71,9 +73,17 @@ export default class GamePage extends ConstructorView {
         LevelDiv.appendChild(PageSelector);
 
         const SetBtnDiv = this.constructorForm('div', 'setBtnDiv');
-        const ImgHelp = this.constructorIMG(this.myImages);
+        const SpeckHelp = this.constructorIMG(this.SpeckHelpImages, 'Подсказка "Голосом"', 'IMG_Help', 'IMG_Help_Spec');
+        const SentHelp = this.constructorIMG(this.SentHelpImages, 'Подсказка "Перевод"', 'IMG_Help', 'IMG_Help_Sent');
+        const QustHelp = this.constructorIMG(this.QuestHelpImages, 'Подсказка "Вопрос"', 'IMG_Help', 'IMG_Help_Quest');
+        SpeckHelp.addEventListener('click', () => {
+            console.log('clickOFF');
+            this.SpeckHelpImages = 'images/loud_off.png';
+        });
         SettingDiv.appendChild(SetBtnDiv);
-        SetBtnDiv.appendChild(ImgHelp);
+        SetBtnDiv.appendChild(SentHelp);
+        SetBtnDiv.appendChild(SpeckHelp);
+        SetBtnDiv.appendChild(QustHelp);
 
         const TaskDiv = this.constructorDiv('div', 'taskDiv', 'taskDivID');
         Section.appendChild(TaskDiv);

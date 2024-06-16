@@ -10,10 +10,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.ts'),
     mode: 'development',
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-    },
+    // output: {
+    //     filename: 'bundle.js',
+    //     path: path.resolve(__dirname, 'dist'),
+    // },
     module: {
         rules: [
             {
@@ -32,8 +32,11 @@ const baseConfig = {
                         loader: 'file-loader',
                         options: {
                             name: '[path][name].[ext]',
-                            // context: 'src', // Base directory (absolute path) for the context.
-                            outputPath: 'imag/', // Output directory for images
+                            context: path.resolve(__dirname, 'src'), // Base directory (absolute path) for the context.
+                            // outputPath: 'imag/', // Output directory for images
+                            outputPath: 'images/',
+                            publicPath: 'images/',
+                            useRelativePaths: true,
                             // publicPath: 'imag/', // Public URL to use in the browser
                         },
                     },
@@ -44,10 +47,10 @@ const baseConfig = {
     resolve: {
         extensions: ['.js', '.ts'],
     },
-    output: {
-        filename: 'index.js',
-        path: path.resolve(__dirname, './dist'),
-    },
+    // output: {
+    //     filename: 'index.js',
+    //     path: path.resolve(__dirname, './dist'),
+    // },
     plugins: [
         new DotenvWebpackPlugin(),
         new HtmlWebpackPlugin({
@@ -73,5 +76,4 @@ module.exports = ({ mode }) => {
     const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
 
     return merge(baseConfig, envConfig);
-    
 };

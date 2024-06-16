@@ -21,8 +21,11 @@ export default class GamePage extends ConstructorView {
     private ElemMassSent!: number;
     // private myImages: string = require ('../../../img/loud_on.png');
     private SpeckHelpImages: string = 'images/loud_on.png';
-    private SentHelpImages: string = 'images/translator_on.png';
-    private QuestHelpImages : string = 'images/question_on.png';
+    // private SpeckHelpImages!: string;
+    private SentHelpImages: string = 'images/translator.png';
+    private QuestHelpImages: string = 'images/question_on.png';
+    private SpeckArr = new Array('images/loud_on.png', 'images/loud_off_grey.png');
+    private i: number = 0;
     constructor() {
         super();
         // this.render();
@@ -73,13 +76,39 @@ export default class GamePage extends ConstructorView {
         LevelDiv.appendChild(PageSelector);
 
         const SetBtnDiv = this.constructorForm('div', 'setBtnDiv');
-        const SpeckHelp = this.constructorIMG(this.SpeckHelpImages, 'Подсказка "Голосом"', 'IMG_Help', 'IMG_Help_Spec');
-        const SentHelp = this.constructorIMG(this.SentHelpImages, 'Подсказка "Перевод"', 'IMG_Help', 'IMG_Help_Sent');
-        const QustHelp = this.constructorIMG(this.QuestHelpImages, 'Подсказка "Вопрос"', 'IMG_Help', 'IMG_Help_Quest');
-        SpeckHelp.addEventListener('click', () => {
-            console.log('clickOFF');
-            this.SpeckHelpImages = 'images/loud_off.png';
-        });
+        const SpeckHelp = this.constructorIMG(
+            this.SpeckHelpImages,
+            'Подсказка "Голосом"',
+            'IMG_Help',
+            'IMG_Help_Spec',
+            'on'
+        );
+        // SpeckHelp.setAttribute('data-state', 'on');
+        SpeckHelp.addEventListener('click', () => this.ToggleImage(SpeckHelp));
+        const SentHelp = this.constructorIMG(
+            this.SentHelpImages,
+            'Подсказка "Перевод"',
+            'IMG_Help',
+            'IMG_Help_Sent',
+            'on'
+        );
+        SentHelp.addEventListener('click', () => this.ToggleImage(SentHelp));
+        const QustHelp = this.constructorIMG(
+            this.QuestHelpImages,
+            'Подсказка "Вопрос"',
+            'IMG_Help',
+            'IMG_Help_Quest',
+            'on'
+        );
+        QustHelp.addEventListener('click', () => this.ToggleImage(QustHelp));
+        // SpeckHelp.addEventListener('click', () => {
+        //     console.log('clickOFF');
+        //     console.log(this.SpeckArr);
+
+        //     this.NextImage(this.SpeckArr);
+        //     // this.SpeckHelpImages = 'images/loud_off.png';
+        // });
+
         SettingDiv.appendChild(SetBtnDiv);
         SetBtnDiv.appendChild(SentHelp);
         SetBtnDiv.appendChild(SpeckHelp);
@@ -135,10 +164,42 @@ export default class GamePage extends ConstructorView {
         }
         this.DivInPuzzle.ondragover = this.allowDrop;
         this.DivInPuzzle.ondrop = this.drop;
-
         this.init();
         return Section; // Добавляем Section в body
     }
+
+    private ToggleImage(IMG: HTMLImageElement){
+        const ImageData = IMG.getAttribute('data-state');
+        const newDataState = ImageData === 'off'? 'on':'off';
+        IMG.setAttribute('data-state', newDataState);
+        let SRC = IMG.src;
+        console.log(SRC);
+        if (newDataState === 'off') {
+            // SRC = 'off' + SRC;
+            console.log(SRC);
+        }
+        
+
+    }
+
+    // Переключение состояния кнопки громкости(работает)
+    // private NextImage(ArrIMG: string[]) {
+    //     if (this.i < ArrIMG.length - 1) {
+    //         this.i++;
+    //         this.SpeckHelpImages = ArrIMG[this.i];
+    //         const IMG = document.getElementById('IMG_Help_Spec') as HTMLImageElement;
+    //         IMG.src = ArrIMG[this.i];
+    //         console.log(this.SpeckHelpImages);
+    //         console.log(this.i);
+    //     } else {
+    //         console.log('bolshe');
+    //         this.i = 0;
+    //         const IMG = document.getElementById('IMG_Help_Spec') as HTMLImageElement;
+    //         IMG.src = ArrIMG[this.i];
+    //         console.log(this.i);
+    //     }
+    //     return this.SpeckHelpImages;
+    // };
 
     private allowDrop(event: any) {
         event.preventDefault();
@@ -159,7 +220,8 @@ export default class GamePage extends ConstructorView {
             this.SentenceSplitEN = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExample;
             this.sentTaskHelp = this.constructorLable('h1', 'sentTaskHelp', this.SentenceSplitEN);
             this.SentTaskDiv.appendChild(this.sentTaskHelp);
-            this.SentenceSplitENEQ = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExample.split(' ');
+            this.SentenceSplitENEQ =
+                this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExample.split(' ');
             const SentenceSplitEN = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExample
                 .split(' ')
                 .sort(() => Math.random() - 0.7);
@@ -169,7 +231,7 @@ export default class GamePage extends ConstructorView {
                 const testWorlds = this.constructorH1('button', 'testWorldsClass', 'testWorldsID' + world, world);
                 this.SentencePuzzleDiv.appendChild(testWorlds);
                 testWorlds.addEventListener('click', () => this.clickBTNWorlds(world));
-                
+
                 testWorlds.ondragstart = this.drag;
             });
         }
@@ -261,7 +323,12 @@ export default class GamePage extends ConstructorView {
             if (this.roundPage < 44) {
                 this.roundPage = this.roundPage + 1;
             } else {
-                const BTNNextLevel = this.constructorH1('button', 'btnNextLevel', 'btnNextLevelID', 'Следующий Уровень');
+                const BTNNextLevel = this.constructorH1(
+                    'button',
+                    'btnNextLevel',
+                    'btnNextLevelID',
+                    'Следующий Уровень'
+                );
                 document.getElementById('BTNSentDivID')?.appendChild(BTNNextLevel);
             }
         }

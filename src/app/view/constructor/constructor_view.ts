@@ -55,12 +55,13 @@ export default class ConstructorView {
     // importAll(r: __WebpackModuleApi.RequireContext): string[] {
     //     return r.keys().map(r);
     // }
-    constructorIMG(ImageURL: string, ALT: string, CLASS: string, ID: string) {
+    constructorIMG(ImageURL: string, ALT: string, CLASS: string, ID: string, DATA: string) {
         const consIMG = document.createElement('img');
         consIMG.src = ImageURL;
         consIMG.alt = ALT;
         consIMG.className = CLASS;
         consIMG.id = ID;
+        consIMG.setAttribute('data-state', DATA);
         return consIMG;
     }
 }

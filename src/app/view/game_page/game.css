@@ -51,3 +51,7 @@
         transform: scale(1.2);
       }
 }
+
+#IMG_Help_Sent[data-state="off"] {
+    background-image: 'images/translator_off.png';
+}

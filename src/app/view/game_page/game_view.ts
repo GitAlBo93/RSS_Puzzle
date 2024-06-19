@@ -13,6 +13,7 @@ export default class GamePage extends ConstructorView {
     // private randomNumber: number;
     // private SentenceSplitENEQ = this.Collection1.rounds[0].words[this.randomNumber].textExample.split(' ');
     private SentenceSplitENEQ!: string[];
+    private SentenceSplitRU!: string;
     private SentenceSplitEN!: string;
     private SentencePuzzleDiv!: HTMLElement;
     private sentTaskHelp!: HTMLElement;
@@ -76,15 +77,15 @@ export default class GamePage extends ConstructorView {
         LevelDiv.appendChild(PageSelector);
 
         const SetBtnDiv = this.constructorForm('div', 'setBtnDiv');
-        const SpeckHelp = this.constructorIMG(
+        const VoiceHelp = this.constructorIMG(
             this.SpeckHelpImages,
             'Подсказка "Голосом"',
             'IMG_Help',
-            'IMG_Help_Spec',
+            'IMG_Help_Voice',
             'on'
         );
         // SpeckHelp.setAttribute('data-state', 'on');
-        SpeckHelp.addEventListener('click', () => this.ToggleImage(SpeckHelp));
+        VoiceHelp.addEventListener('click', () => this.ToggleVoice(VoiceHelp));
         const SentHelp = this.constructorIMG(
             this.SentHelpImages,
             'Подсказка "Перевод"',
@@ -92,7 +93,7 @@ export default class GamePage extends ConstructorView {
             'IMG_Help_Sent',
             'on'
         );
-        SentHelp.addEventListener('click', () => this.ToggleImage(SentHelp));
+        SentHelp.addEventListener('click', () => this.ToggleTranclate(SentHelp));
         const QustHelp = this.constructorIMG(
             this.QuestHelpImages,
             'Подсказка "Вопрос"',
@@ -100,7 +101,7 @@ export default class GamePage extends ConstructorView {
             'IMG_Help_Quest',
             'on'
         );
-        QustHelp.addEventListener('click', () => this.ToggleImage(QustHelp));
+        QustHelp.addEventListener('click', () => this.ToggleQuestion(QustHelp));
         // SpeckHelp.addEventListener('click', () => {
         //     console.log('clickOFF');
         //     console.log(this.SpeckArr);
@@ -111,7 +112,7 @@ export default class GamePage extends ConstructorView {
 
         SettingDiv.appendChild(SetBtnDiv);
         SetBtnDiv.appendChild(SentHelp);
-        SetBtnDiv.appendChild(SpeckHelp);
+        SetBtnDiv.appendChild(VoiceHelp);
         SetBtnDiv.appendChild(QustHelp);
 
         const TaskDiv = this.constructorDiv('div', 'taskDiv', 'taskDivID');
@@ -168,20 +169,62 @@ export default class GamePage extends ConstructorView {
         return Section; // Добавляем Section в body
     }
 
-    private ToggleImage(IMG: HTMLImageElement){
+    //Тут происходит смена data-state всех image
+    // private ToggleImage(IMG: HTMLImageElement){
+    //     const ImageData = IMG.getAttribute('data-state');
+    //     const newDataState = ImageData === 'off'? 'on':'off';
+    //     IMG.setAttribute('data-state', newDataState);
+    //     // let SRC = IMG.src;
+    //     // console.log(SRC);
+    //     if (newDataState === 'off') {
+    //         // SRC = 'off' + SRC;
+    //         // console.log(SRC);
+    //     }
+    // }
+
+    private ToggleTranclate(IMG: HTMLImageElement) {
         const ImageData = IMG.getAttribute('data-state');
         const newDataState = ImageData === 'off'? 'on':'off';
         IMG.setAttribute('data-state', newDataState);
-        let SRC = IMG.src;
-        console.log(SRC);
         if (newDataState === 'off') {
-            // SRC = 'off' + SRC;
-            console.log(SRC);
+            IMG.src = 'images/translator_off.png';
+            this.SentTaskDiv.innerHTML = '';
+            this.SentenceSplitEN = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExample;
+            this.sentTaskHelp = this.constructorLable('h1', 'sentTaskHelp', this.SentenceSplitEN);
+            this.SentTaskDiv.appendChild(this.sentTaskHelp);
         }
-        
-
+        else {
+            IMG.src = 'images/translator.png';
+            this.SentTaskDiv.innerHTML = '';
+            this.SentenceSplitRU = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExampleTranslate;
+            this.sentTaskHelp = this.constructorLable('h1', 'sentTaskHelp', this.SentenceSplitRU);
+            this.SentTaskDiv.appendChild(this.sentTaskHelp);
+        }
     }
 
+    private ToggleVoice(IMG: HTMLImageElement) {
+        const ImageData = IMG.getAttribute('data-state');
+        const newDataState = ImageData === 'off'? 'on':'off';
+        IMG.setAttribute('data-state', newDataState);
+        if (newDataState === 'off') {
+            IMG.src = 'images/loud_off_grey.png';
+        }
+        else {
+            IMG.src = 'images/loud_on.png';
+        }
+    }
+
+    private ToggleQuestion(IMG: HTMLImageElement) {
+        const ImageData = IMG.getAttribute('data-state');
+        const newDataState = ImageData === 'off'? 'on':'off';
+        IMG.setAttribute('data-state', newDataState);
+        if (newDataState === 'off') {
+            IMG.src = 'images/question_off.png';
+        }
+        else {
+            IMG.src = 'images/question_on.png';
+        }
+    }
     // Переключение состояния кнопки громкости(работает)
     // private NextImage(ArrIMG: string[]) {
     //     if (this.i < ArrIMG.length - 1) {
@@ -217,8 +260,8 @@ export default class GamePage extends ConstructorView {
     init() {
         if (this.SentencePuzzleDiv != null) {
             // console.log(this.SentencePuzzleDiv);
-            this.SentenceSplitEN = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExample;
-            this.sentTaskHelp = this.constructorLable('h1', 'sentTaskHelp', this.SentenceSplitEN);
+            this.SentenceSplitRU = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExampleTranslate;
+            this.sentTaskHelp = this.constructorLable('h1', 'sentTaskHelp', this.SentenceSplitRU);
             this.SentTaskDiv.appendChild(this.sentTaskHelp);
             this.SentenceSplitENEQ =
                 this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExample.split(' ');

@@ -354,6 +354,8 @@ export default class GamePage extends ConstructorView {
         const SentDiv = document.getElementById('sentPuzzleDivID') as HTMLElement;
         SentDiv.innerHTML = '';
         this.SentTaskDiv.innerHTML = '';
+        const PuzzleDiv = document.getElementById('puzzleDivID') as HTMLElement;
+        PuzzleDiv.style.backgroundImage = '';
         this.init();
 
         const BTNNextLevel = document.getElementById('btnNextLevelID') as HTMLElement;
@@ -366,9 +368,12 @@ export default class GamePage extends ConstructorView {
 
     private roundsOff(ArraySent: number[]) {
         if (ArraySent.length === 0) {
+
             const BTNNextLevel = this.constructorH1('button', 'btnNextLevel', 'btnNextLevelID', 'Следующий Уровень');
             document.getElementById('BTNSentDivID')?.appendChild(BTNNextLevel);
             const PuzzleDiv = document.getElementById('puzzleDivID') as HTMLElement;
+            PuzzleDiv.style.backgroundImage = 'url(images/' + this.Collection1.rounds[this.roundPage].levelData.imageSrc + ')';
+            // PuzzleDiv.style.backgroundImage = 'url(images/body_img.jpg)';
             PuzzleDiv.innerHTML = '';
             BTNNextLevel.addEventListener('click', () => this.ArrOk());
             // BTNNextLevel.addEventListener('click', () => this.ArrOk());
@@ -376,13 +381,13 @@ export default class GamePage extends ConstructorView {
             if (this.roundPage < 44) {
                 this.roundPage = this.roundPage + 1;
             } else {
-                const BTNNextLevel = this.constructorH1(
-                    'button',
-                    'btnNextLevel',
-                    'btnNextLevelID',
-                    'Следующий Уровень'
-                );
-                document.getElementById('BTNSentDivID')?.appendChild(BTNNextLevel);
+                // const BTNNextLevel = this.constructorH1(
+                //     'button',
+                //     'btnNextLevel',
+                //     'btnNextLevelID',
+                //     'Следующий Уровень'
+                // );
+                // document.getElementById('BTNSentDivID')?.appendChild(BTNNextLevel);
             }
         }
     }

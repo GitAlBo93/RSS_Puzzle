@@ -19,28 +19,12 @@
           "wordTranslate": "август"
         },
         {
-          "audioExample": "files/01_0005_example.mp3",
-          "textExample": "There is a small boat on the lake",
-          "textExampleTranslate": "На озере есть маленькая лодка",
-          "id": 5,
-          "word": "boat",
-          "wordTranslate": "лодка"
-        },
-        {
           "audioExample": "files/01_0006_example.mp3",
           "textExample": "I ate eggs for breakfast",
           "textExampleTranslate": "Я ел яйца на завтрак",
           "id": 6,
           "word": "breakfast",
           "wordTranslate": "завтрак"
-        },
-        {
-          "audioExample": "files/01_0007_example.mp3",
-          "textExample": "I brought my camera on my vacation",
-          "textExampleTranslate": "Я принес свою камеру в отпуск",
-          "id": 7,
-          "word": "camera",
-          "wordTranslate": "камера"
         }
       ]
     },

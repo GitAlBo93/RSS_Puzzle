@@ -203,15 +203,24 @@ export default class GamePage extends ConstructorView {
     }
 
     private ToggleVoice(IMG: HTMLImageElement) {
-        const ImageData = IMG.getAttribute('data-state');
-        const newDataState = ImageData === 'off'? 'on':'off';
-        IMG.setAttribute('data-state', newDataState);
-        if (newDataState === 'off') {
-            IMG.src = 'images/loud_off_grey.png';
-        }
-        else {
-            IMG.src = 'images/loud_on.png';
-        }
+        const audio = new Audio();
+        audio.src = 'images/' + this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].audioExample;
+        audio.autoplay = true;
+        // const ImageData = IMG.getAttribute('data-state');
+        // const newDataState = ImageData === 'off'? 'on':'off';
+        // IMG.setAttribute('data-state', newDataState);
+        // if (newDataState === 'off') {
+        //     // IMG.src = 'images/loud_off_grey.png';
+        //     const audio = new Audio();
+        //     const src = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].audioExample;
+        //     const src2 = 'images/' + src;
+        //     audio.src = 'images/' + this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].audioExample;
+        //     audio.autoplay = true;
+        //     console.log(src2);
+        // }
+        // else {
+        //     IMG.src = 'images/loud_on.png';
+        // }
     }
 
     private ToggleQuestion(IMG: HTMLImageElement) {
@@ -219,6 +228,7 @@ export default class GamePage extends ConstructorView {
         const newDataState = ImageData === 'off'? 'on':'off';
         IMG.setAttribute('data-state', newDataState);
         if (newDataState === 'off') {
+            // IMG.src = 'images/question_off.png';
             IMG.src = 'images/question_off.png';
         }
         else {

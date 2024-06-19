@@ -34,8 +34,8 @@ const baseConfig = {
                             name: '[path][name].[ext]',
                             context: path.resolve(__dirname, 'src'), // Base directory (absolute path) for the context.
                             // outputPath: 'imag/', // Output directory for images
-                            outputPath: 'images/',
-                            publicPath: 'images/',
+                            outputPath: 'src/',
+                            publicPath: 'src/',
                             useRelativePaths: true,
                             // publicPath: 'imag/', // Public URL to use in the browser
                         },
@@ -66,6 +66,7 @@ const baseConfig = {
         new CopyWebpackPlugin({
             patterns: [
                 { from: 'src/images', to: 'images' },
+                // { from: 'src/data_', to: 'images' },
             ],
         }),
     ],

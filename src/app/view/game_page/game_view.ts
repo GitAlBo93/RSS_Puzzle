@@ -3,7 +3,7 @@ import CollectionLevel1 from '../../../data/wordCollectionLevel1.json';
 import './game.css';
 
 export default class GamePage extends ConstructorView {
-    private roundPage: number = 0;
+    private roundPage: number = Number(localStorage.getItem('roundPage'));
     private Collection1 = CollectionLevel1;
     private massClickSentenc: string[] = [];
     private LengtSentence = this.Collection1.rounds[this.roundPage].words.length - 1;
@@ -25,7 +25,7 @@ export default class GamePage extends ConstructorView {
     // private SpeckHelpImages!: string;
     private SentHelpImages: string = 'images/translator.png';
     private QuestHelpImages: string = 'images/question_on.png';
-    private SpeckArr = new Array('images/loud_on.png', 'images/loud_off_grey.png');
+    // private SpeckArr = new Array('images/loud_on.png', 'images/loud_off_grey.png');
     private i: number = 0;
     constructor() {
         super();
@@ -184,7 +184,7 @@ export default class GamePage extends ConstructorView {
 
     private ToggleTranclate(IMG: HTMLImageElement) {
         const ImageData = IMG.getAttribute('data-state');
-        const newDataState = ImageData === 'off'? 'on':'off';
+        const newDataState = ImageData === 'off' ? 'on' : 'off';
         IMG.setAttribute('data-state', newDataState);
         if (newDataState === 'off') {
             IMG.src = 'images/translator_off.png';
@@ -192,11 +192,11 @@ export default class GamePage extends ConstructorView {
             this.SentenceSplitEN = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExample;
             this.sentTaskHelp = this.constructorLable('h1', 'sentTaskHelp', this.SentenceSplitEN);
             this.SentTaskDiv.appendChild(this.sentTaskHelp);
-        }
-        else {
+        } else {
             IMG.src = 'images/translator.png';
             this.SentTaskDiv.innerHTML = '';
-            this.SentenceSplitRU = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExampleTranslate;
+            this.SentenceSplitRU =
+                this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExampleTranslate;
             this.sentTaskHelp = this.constructorLable('h1', 'sentTaskHelp', this.SentenceSplitRU);
             this.SentTaskDiv.appendChild(this.sentTaskHelp);
         }
@@ -225,13 +225,12 @@ export default class GamePage extends ConstructorView {
 
     private ToggleQuestion(IMG: HTMLImageElement) {
         const ImageData = IMG.getAttribute('data-state');
-        const newDataState = ImageData === 'off'? 'on':'off';
+        const newDataState = ImageData === 'off' ? 'on' : 'off';
         IMG.setAttribute('data-state', newDataState);
         if (newDataState === 'off') {
             // IMG.src = 'images/question_off.png';
             IMG.src = 'images/question_off.png';
-        }
-        else {
+        } else {
             IMG.src = 'images/question_on.png';
         }
     }
@@ -270,7 +269,8 @@ export default class GamePage extends ConstructorView {
     init() {
         if (this.SentencePuzzleDiv != null) {
             // console.log(this.SentencePuzzleDiv);
-            this.SentenceSplitRU = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExampleTranslate;
+            this.SentenceSplitRU =
+                this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExampleTranslate;
             this.sentTaskHelp = this.constructorLable('h1', 'sentTaskHelp', this.SentenceSplitRU);
             this.SentTaskDiv.appendChild(this.sentTaskHelp);
             this.SentenceSplitENEQ =
@@ -279,6 +279,8 @@ export default class GamePage extends ConstructorView {
                 .split(' ')
                 .sort(() => Math.random() - 0.7);
             // console.log(SentenceSplitEN);
+            localStorage.setItem('roundPage', String(this.roundPage));
+            console.log(localStorage.getItem('roundPage'));
 
             SentenceSplitEN.forEach((world) => {
                 const testWorlds = this.constructorH1('button', 'testWorldsClass', 'testWorldsID' + world, world);
@@ -368,11 +370,11 @@ export default class GamePage extends ConstructorView {
 
     private roundsOff(ArraySent: number[]) {
         if (ArraySent.length === 0) {
-
             const BTNNextLevel = this.constructorH1('button', 'btnNextLevel', 'btnNextLevelID', 'Следующий Уровень');
             document.getElementById('BTNSentDivID')?.appendChild(BTNNextLevel);
             const PuzzleDiv = document.getElementById('puzzleDivID') as HTMLElement;
-            PuzzleDiv.style.backgroundImage = 'url(images/' + this.Collection1.rounds[this.roundPage].levelData.imageSrc + ')';
+            PuzzleDiv.style.backgroundImage =
+                'url(images/' + this.Collection1.rounds[this.roundPage].levelData.imageSrc + ')';
             // PuzzleDiv.style.backgroundImage = 'url(images/body_img.jpg)';
             PuzzleDiv.innerHTML = '';
             BTNNextLevel.addEventListener('click', () => this.ArrOk());

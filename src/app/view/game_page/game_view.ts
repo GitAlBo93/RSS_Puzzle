@@ -26,7 +26,7 @@ export default class GamePage extends ConstructorView {
     private SentHelpImages: string = 'images/translator.png';
     private QuestHelpImages: string = 'images/question_on.png';
     // private SpeckArr = new Array('images/loud_on.png', 'images/loud_off_grey.png');
-    private i: number = 0;
+    // private i: number = 0;
     constructor() {
         super();
         // this.render();
@@ -155,7 +155,8 @@ export default class GamePage extends ConstructorView {
         for (let indexSelector = 1; indexSelector < this.Collection1.rounds.length + 1; indexSelector++) {
             const element = this.constructorSelectOption(
                 'option',
-                'PageOptions' + indexSelector,
+                // 'PageOptions' + indexSelector,
+                'PageOptions',
                 'PageOptions' + String(indexSelector),
                 String(indexSelector),
                 String(indexSelector)
@@ -165,7 +166,9 @@ export default class GamePage extends ConstructorView {
         }
         this.DivInPuzzle.ondragover = this.allowDrop;
         this.DivInPuzzle.ondrop = this.drop;
-        this.init();
+        // this.clickPage = document.getElementById('pageSelectorID') as HTMLSelectElement;
+        window.onload = () => this.changPage();
+        // this.init();
         return Section; // Добавляем Section в body
     }
 
@@ -206,6 +209,7 @@ export default class GamePage extends ConstructorView {
         const audio = new Audio();
         audio.src = 'images/' + this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].audioExample;
         audio.autoplay = true;
+
         // const ImageData = IMG.getAttribute('data-state');
         // const newDataState = ImageData === 'off'? 'on':'off';
         // IMG.setAttribute('data-state', newDataState);
@@ -267,6 +271,13 @@ export default class GamePage extends ConstructorView {
     }
 
     init() {
+        //   this.clickPage = document.getElementById('pageSelectorID') as HTMLSelectElement;
+        // document.addEventListener('DOMContentLoaded', ()=> this.changPage());
+
+        // })
+
+        // clickPage.addEventListener('change', ()=> this.changPage(clickPage));
+
         if (this.SentencePuzzleDiv != null) {
             // console.log(this.SentencePuzzleDiv);
             this.SentenceSplitRU =
@@ -290,6 +301,13 @@ export default class GamePage extends ConstructorView {
                 testWorlds.ondragstart = this.drag;
             });
         }
+        // if (clickPage){
+        // this.clickPage.addEventListener('change', ()=> this.changPage(this.clickPage));
+        // clickPage.addEventListener('change', ()=> {
+        //     const value = clickPage.value;
+        //     console.log(value);
+        // });
+        // }
     }
 
     private randomArr(ArraySent: number[]) {
@@ -392,6 +410,24 @@ export default class GamePage extends ConstructorView {
                 // document.getElementById('BTNSentDivID')?.appendChild(BTNNextLevel);
             }
         }
+    }
+
+    private changPages(clickPagesss: HTMLSelectElement) {
+        const pageCheck = clickPagesss.value;
+        clickPagesss.options.selectedIndex = Number(pageCheck) - 1;
+        this.roundPage = Number(pageCheck) - 1;
+        localStorage.setItem('roundPage', pageCheck);
+        // console.log('prosto log');
+        console.log(clickPagesss);
+
+        console.log(this.roundPage);
+        // this.init();
+    }
+
+    private changPage() {
+        const clickPagesss = document.getElementById('pageSelectorID') as HTMLSelectElement;
+        clickPagesss.addEventListener('change', () => this.changPages(clickPagesss));
+        this.init();
     }
 }
 

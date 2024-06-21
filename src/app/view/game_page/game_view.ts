@@ -386,6 +386,17 @@ export default class GamePage extends ConstructorView {
         // BtnSentOk.addEventListener('click', () => this.init());
     };
 
+    private cleanHTML() {
+        this.SentTaskDiv.innerHTML = '';
+        const SentDiv = document.getElementById('sentPuzzleDivID') as HTMLElement;
+        SentDiv.innerHTML = '';
+        const PuzzleDiv = document.getElementById('puzzleDivID') as HTMLElement;
+        // PuzzleDiv.style.backgroundImage = '';
+        PuzzleDiv.innerHTML = '';
+        const BTNDIVEND = document.getElementById('BTNSentDivID') as HTMLElement;
+        BTNDIVEND.innerHTML = '';
+    }
+
     private roundsOff(ArraySent: number[]) {
         if (ArraySent.length === 0) {
             const BTNNextLevel = this.constructorH1('button', 'btnNextLevel', 'btnNextLevelID', 'Следующий Уровень');
@@ -416,12 +427,13 @@ export default class GamePage extends ConstructorView {
         const pageCheck = clickPagesss.value;
         clickPagesss.options.selectedIndex = Number(pageCheck) - 1;
         this.roundPage = Number(pageCheck) - 1;
-        localStorage.setItem('roundPage', pageCheck);
+        localStorage.setItem('roundPage', String(this.roundPage));
         // console.log('prosto log');
         console.log(clickPagesss);
 
         console.log(this.roundPage);
-        // this.init();
+        this.cleanHTML();
+        this.init();
     }
 
     private changPage() {

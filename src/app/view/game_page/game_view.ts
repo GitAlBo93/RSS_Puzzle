@@ -9,9 +9,6 @@ export default class GamePage extends ConstructorView {
     private LengtSentence = this.Collection1.rounds[this.roundPage].words.length - 1;
     private ArraySent = Array.from({ length: this.LengtSentence + 1 }, (_, i) => i);
     private randomNumber = this.randomArr(this.ArraySent);
-    // private randomNumber!: number;
-    // private randomNumber: number;
-    // private SentenceSplitENEQ = this.Collection1.rounds[0].words[this.randomNumber].textExample.split(' ');
     private SentenceSplitENEQ!: string[];
     private SentenceSplitRU!: string;
     private SentenceSplitEN!: string;
@@ -20,24 +17,15 @@ export default class GamePage extends ConstructorView {
     private DivInPuzzle!: HTMLElement;
     private SentTaskDiv!: HTMLElement;
     private ElemMassSent!: number;
-    // private myImages: string = require ('../../../img/loud_on.png');
     private SpeckHelpImages: string = 'images/loud_on.png';
-    // private SpeckHelpImages!: string;
     private SentHelpImages: string = 'images/translator.png';
     private QuestHelpImages: string = 'images/question_on.png';
-    // private SpeckArr = new Array('images/loud_on.png', 'images/loud_off_grey.png');
-    // private i: number = 0;
+
     constructor() {
         super();
-        // this.render();
-        // if (this.SentencePuzzleDiv) {
-        //   const start = this.init();
-        // };
     }
 
     render() {
-        console.log(this.SentenceSplitENEQ);
-
         const Section = document.createElement('section');
         Section.className = 'sectionGame';
 
@@ -84,7 +72,7 @@ export default class GamePage extends ConstructorView {
             'IMG_Help_Voice',
             'on'
         );
-        // SpeckHelp.setAttribute('data-state', 'on');
+
         VoiceHelp.addEventListener('click', () => this.ToggleVoice(VoiceHelp));
         const SentHelp = this.constructorIMG(
             this.SentHelpImages,
@@ -102,13 +90,6 @@ export default class GamePage extends ConstructorView {
             'on'
         );
         QustHelp.addEventListener('click', () => this.ToggleQuestion(QustHelp));
-        // SpeckHelp.addEventListener('click', () => {
-        //     console.log('clickOFF');
-        //     console.log(this.SpeckArr);
-
-        //     this.NextImage(this.SpeckArr);
-        //     // this.SpeckHelpImages = 'images/loud_off.png';
-        // });
 
         SettingDiv.appendChild(SetBtnDiv);
         SetBtnDiv.appendChild(SentHelp);
@@ -132,7 +113,6 @@ export default class GamePage extends ConstructorView {
 
         this.SentencePuzzleDiv = this.constructorDiv('div', 'sentPuzzleDiv', 'sentPuzzleDivID');
         SentenceDiv.appendChild(this.SentencePuzzleDiv);
-        // console.log(this.SentencePuzzleDiv); // Проверка, что элемент создан
 
         const BTNSentenceDiv = this.constructorDiv('div', 'BTNSentDiv', 'BTNSentDivID');
         SentenceDiv.appendChild(BTNSentenceDiv);
@@ -144,46 +124,21 @@ export default class GamePage extends ConstructorView {
         this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + this.ElemMassSent);
         PuzzleDiv.appendChild(this.DivInPuzzle);
 
-        // for (let i = 0; i < this.ArraySent.length; i++) {
-        //     const element = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + i);
-        //     PuzzleDiv.appendChild(element);
-        // }
-
-        // BtnSentOk.addEventListener('click', () => this.init());
-        // BtnSentOk.addEventListener('click', () => this.ArrOk());
-
         for (let indexSelector = 1; indexSelector < this.Collection1.rounds.length + 1; indexSelector++) {
             const element = this.constructorSelectOption(
                 'option',
-                // 'PageOptions' + indexSelector,
                 'PageOptions',
                 'PageOptions' + String(indexSelector),
                 String(indexSelector),
                 String(indexSelector)
             );
             PageSelector.appendChild(element);
-            // console.log(this.ArraySent);
         }
         this.DivInPuzzle.ondragover = this.allowDrop;
         this.DivInPuzzle.ondrop = this.drop;
-        // this.clickPage = document.getElementById('pageSelectorID') as HTMLSelectElement;
         window.onload = () => this.changPage();
-        // this.init();
-        return Section; // Добавляем Section в body
+        return Section;
     }
-
-    //Тут происходит смена data-state всех image
-    // private ToggleImage(IMG: HTMLImageElement){
-    //     const ImageData = IMG.getAttribute('data-state');
-    //     const newDataState = ImageData === 'off'? 'on':'off';
-    //     IMG.setAttribute('data-state', newDataState);
-    //     // let SRC = IMG.src;
-    //     // console.log(SRC);
-    //     if (newDataState === 'off') {
-    //         // SRC = 'off' + SRC;
-    //         // console.log(SRC);
-    //     }
-    // }
 
     private ToggleTranclate(IMG: HTMLImageElement) {
         const ImageData = IMG.getAttribute('data-state');
@@ -209,22 +164,6 @@ export default class GamePage extends ConstructorView {
         const audio = new Audio();
         audio.src = 'images/' + this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].audioExample;
         audio.autoplay = true;
-
-        // const ImageData = IMG.getAttribute('data-state');
-        // const newDataState = ImageData === 'off'? 'on':'off';
-        // IMG.setAttribute('data-state', newDataState);
-        // if (newDataState === 'off') {
-        //     // IMG.src = 'images/loud_off_grey.png';
-        //     const audio = new Audio();
-        //     const src = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].audioExample;
-        //     const src2 = 'images/' + src;
-        //     audio.src = 'images/' + this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].audioExample;
-        //     audio.autoplay = true;
-        //     console.log(src2);
-        // }
-        // else {
-        //     IMG.src = 'images/loud_on.png';
-        // }
     }
 
     private ToggleQuestion(IMG: HTMLImageElement) {
@@ -232,30 +171,11 @@ export default class GamePage extends ConstructorView {
         const newDataState = ImageData === 'off' ? 'on' : 'off';
         IMG.setAttribute('data-state', newDataState);
         if (newDataState === 'off') {
-            // IMG.src = 'images/question_off.png';
             IMG.src = 'images/question_off.png';
         } else {
             IMG.src = 'images/question_on.png';
         }
     }
-    // Переключение состояния кнопки громкости(работает)
-    // private NextImage(ArrIMG: string[]) {
-    //     if (this.i < ArrIMG.length - 1) {
-    //         this.i++;
-    //         this.SpeckHelpImages = ArrIMG[this.i];
-    //         const IMG = document.getElementById('IMG_Help_Spec') as HTMLImageElement;
-    //         IMG.src = ArrIMG[this.i];
-    //         console.log(this.SpeckHelpImages);
-    //         console.log(this.i);
-    //     } else {
-    //         console.log('bolshe');
-    //         this.i = 0;
-    //         const IMG = document.getElementById('IMG_Help_Spec') as HTMLImageElement;
-    //         IMG.src = ArrIMG[this.i];
-    //         console.log(this.i);
-    //     }
-    //     return this.SpeckHelpImages;
-    // };
 
     private allowDrop(event: any) {
         event.preventDefault();
@@ -267,19 +187,10 @@ export default class GamePage extends ConstructorView {
 
     private drop(event: any) {
         const itemID = event.dataTransfer.getData('id');
-        console.log(itemID);
     }
 
     init() {
-        //   this.clickPage = document.getElementById('pageSelectorID') as HTMLSelectElement;
-        // document.addEventListener('DOMContentLoaded', ()=> this.changPage());
-
-        // })
-
-        // clickPage.addEventListener('change', ()=> this.changPage(clickPage));
-
         if (this.SentencePuzzleDiv != null) {
-            // console.log(this.SentencePuzzleDiv);
             this.SentenceSplitRU =
                 this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExampleTranslate;
             this.sentTaskHelp = this.constructorLable('h1', 'sentTaskHelp', this.SentenceSplitRU);
@@ -289,36 +200,21 @@ export default class GamePage extends ConstructorView {
             const SentenceSplitEN = this.Collection1.rounds[this.roundPage].words[this.ElemMassSent].textExample
                 .split(' ')
                 .sort(() => Math.random() - 0.7);
-            // console.log(SentenceSplitEN);
             localStorage.setItem('roundPage', String(this.roundPage));
-            console.log(localStorage.getItem('roundPage'));
 
             SentenceSplitEN.forEach((world) => {
                 const testWorlds = this.constructorH1('button', 'testWorldsClass', 'testWorldsID' + world, world);
                 this.SentencePuzzleDiv.appendChild(testWorlds);
                 testWorlds.addEventListener('click', () => this.clickBTNWorlds(world));
-
                 testWorlds.ondragstart = this.drag;
             });
         }
-        // if (clickPage){
-        // this.clickPage.addEventListener('change', ()=> this.changPage(this.clickPage));
-        // clickPage.addEventListener('change', ()=> {
-        //     const value = clickPage.value;
-        //     console.log(value);
-        // });
-        // }
     }
 
     private randomArr(ArraySent: number[]) {
         const randomElement = Math.floor(Math.random() * ArraySent.length);
         this.ElemMassSent = ArraySent[randomElement];
-        // console.log(randomElement);
         this.randomNumber = randomElement;
-        console.log(randomElement);
-        // console.log(this.randomNumber);
-        console.log(this.ArraySent);
-        console.log(ArraySent);
         this.DivInPuzzle = this.constructorDiv('div', 'divInPuzzle', 'divInPuzzleID' + this.ElemMassSent);
         document.getElementById('puzzleDivID')?.appendChild(this.DivInPuzzle);
         return randomElement;
@@ -326,22 +222,16 @@ export default class GamePage extends ConstructorView {
 
     private clickBTNWorlds = (world: string) => {
         this.massClickSentenc.push(world);
-        // console.log(this.massClickSentenc);
         document.getElementById('testWorldsID' + world)?.classList.add('none');
-        // document.getElementById('testWorldsID' + world)?.remove();
         const PuzzleSentRus = this.constructorH1('button', 'puzzleSplit', 'puzzleSplit' + world, world);
         document.getElementById('divInPuzzleID' + this.ElemMassSent)?.appendChild(PuzzleSentRus);
         PuzzleSentRus.addEventListener('click', () => this.removeBTNWorlds(world));
-        // document.getElementById('divInPuzzleID' + this.randomNumber)?.appendChild(PuzzleSentRus);
-        // document.getElementById('puzzleDivID')?.appendChild(PuzzleSentRus);
         this.ArrEq(this.SentenceSplitENEQ, this.massClickSentenc);
     };
 
     private removeBTNWorlds = (world: string) => {
         document.getElementById('puzzleSplit' + world)?.remove();
         document.getElementById('testWorldsID' + world)?.classList.toggle('none');
-        // const testWorlds = this.constructorH1('button', 'testWorldsClass', 'testWorldsID' + world, world);
-        // document.getElementById('sentPuzzleDivID')?.appendChild(testWorlds);
         this.findElem(world);
     };
 
@@ -356,13 +246,8 @@ export default class GamePage extends ConstructorView {
         if (SentenceSplitENEQ.toString() === massClickSentenc.toString()) {
             document.getElementById('btnSentsOkID')?.classList.toggle('none');
             massClickSentenc.length = 0;
-            // this.randomArr(this.ArraySent);
-            // document.getElementById('btnSentsOkID')?.addEventListener('click', () => this.ArrOk());
-            // this.ArrOk();
             this.ArraySent.splice(this.randomNumber, 1);
             this.roundsOff(this.ArraySent);
-        } else {
-            // console.log(massClickSentenc);
         }
     }
 
@@ -382,8 +267,6 @@ export default class GamePage extends ConstructorView {
         if (BTNNextLevel!) {
             BTNNextLevel.remove();
         }
-        // BtnSentOk.addEventListener('click', () => this.randomArr(this.ArraySent));
-        // BtnSentOk.addEventListener('click', () => this.init());
     };
 
     private cleanHTML() {
@@ -391,7 +274,6 @@ export default class GamePage extends ConstructorView {
         const SentDiv = document.getElementById('sentPuzzleDivID') as HTMLElement;
         SentDiv.innerHTML = '';
         const PuzzleDiv = document.getElementById('puzzleDivID') as HTMLElement;
-        // PuzzleDiv.style.backgroundImage = '';
         PuzzleDiv.innerHTML = '';
         const BTNDIVEND = document.getElementById('BTNSentDivID') as HTMLElement;
         BTNDIVEND.innerHTML = '';
@@ -404,21 +286,11 @@ export default class GamePage extends ConstructorView {
             const PuzzleDiv = document.getElementById('puzzleDivID') as HTMLElement;
             PuzzleDiv.style.backgroundImage =
                 'url(images/' + this.Collection1.rounds[this.roundPage].levelData.imageSrc + ')';
-            // PuzzleDiv.style.backgroundImage = 'url(images/body_img.jpg)';
             PuzzleDiv.innerHTML = '';
             BTNNextLevel.addEventListener('click', () => this.ArrOk());
-            // BTNNextLevel.addEventListener('click', () => this.ArrOk());
             this.ArraySent = Array.from({ length: this.LengtSentence + 1 }, (_, i) => i);
             if (this.roundPage < 44) {
                 this.roundPage = this.roundPage + 1;
-            } else {
-                // const BTNNextLevel = this.constructorH1(
-                //     'button',
-                //     'btnNextLevel',
-                //     'btnNextLevelID',
-                //     'Следующий Уровень'
-                // );
-                // document.getElementById('BTNSentDivID')?.appendChild(BTNNextLevel);
             }
         }
     }
@@ -428,10 +300,6 @@ export default class GamePage extends ConstructorView {
         clickPagesss.options.selectedIndex = Number(pageCheck) - 1;
         this.roundPage = Number(pageCheck) - 1;
         localStorage.setItem('roundPage', String(this.roundPage));
-        // console.log('prosto log');
-        console.log(clickPagesss);
-
-        console.log(this.roundPage);
         this.cleanHTML();
         this.init();
     }
@@ -442,5 +310,3 @@ export default class GamePage extends ConstructorView {
         this.init();
     }
 }
-
-// const startPlayGame = new GamePage();

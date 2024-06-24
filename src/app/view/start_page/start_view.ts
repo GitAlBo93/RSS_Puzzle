@@ -1,22 +1,11 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/space-before-blocks */
-// import ConstructorView from '../constructor/constructor_view';
 import './start.css';
-// import { getFLName } from '../login_page/login_view';
 
-// export default class StartPage extends ConstructorView{
 export default class StartPage {
-    // eslint-disable-next-line @typescript-eslint/space-before-blocks
     constructor() {
-        // super();
         this.render();
     }
 
     render(): HTMLElement {
-        // const name = new getFLName();
-        // name.sendFLName();
-        console.log(localStorage.getItem('Name'));
-
         const Section = document.createElement('section');
         Section.className = 'sectionStart';
 
@@ -24,19 +13,8 @@ export default class StartPage {
         Container.className = 'containerStart';
         Section.appendChild(Container);
 
-        // const NameGame = document.createElement('h2');
-        // NameGame.className = 'name_Game';
-        // NameGame.textContent = 'RSS_Puzzle';
-        // Container.appendChild(NameGame);
-
-        // const TYPE = 'h2';
-        // const CLASESS = 'name_Game';
-        // const TEXT = 'RSS_Puzzle';
-        // this.constViewP(TYPE, CLASESS, TEXT);
-
         const Welcom = document.createElement('p');
         Welcom.className = 'welcom';
-        // Welcom.textContent = 'Welcom in Puzzle ' + name.sendFLName();
         Welcom.textContent =
             'Welcom in Puzzle ' + localStorage.getItem('Name') + ' ' + localStorage.getItem('LastName');
         Container.appendChild(Welcom);
@@ -64,7 +42,6 @@ export default class StartPage {
         BtnLogOff.addEventListener('click', () => {
             localStorage.clear();
             window.location.hash = 'Login';
-            // console.log(localStorage);
         });
 
         return Section;
